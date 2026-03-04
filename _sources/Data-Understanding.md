@@ -182,3 +182,6 @@ Berdasarkan hasil visualisasi scatter plot antara sepal length dan sepal width, 
 ![original image](https://cdn.mathpix.com/snip/images/iT4Xj8fRcAwT4AI_oDVDJKNmDaNI3cv0BFxkJoB2VBw.original.fullsize.png)
 
 Berbeda dengan atribut sepal, scatter plot antara petal length dan petal width menunjukkan pola sebaran yang lebih teratur dan cenderung membentuk hubungan linear positif. Titik-titik data terlihat mengikuti arah tertentu, yang menandakan adanya korelasi yang kuat antara kedua atribut petal tersebut.
+
+## Menghitung Jarak
+### Similarity dan Dissimilarity
