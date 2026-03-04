@@ -435,7 +435,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-![Distribusi Fitur Sebelum Scaling](Pertemuan3/SebelumScalling.png)
+![Distribusi Fitur Sebelum Scaling](SebelumScalling.png)
 
 Histogram menunjukkan bahwa setiap fitur memiliki skala dan rentang yang berbeda-beda — `petal_length` memiliki rentang paling lebar.
 
@@ -449,7 +449,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-![Distribusi Fitur Sesudah Scaling](Pertemuan3/SesudahScalling.png)
+![Distribusi Fitur Sesudah Scaling](SesudahScalling.png)
 
 Setelah scaling, semua fitur berada pada skala yang sama (terpusat di 0), sehingga kontribusi setiap fitur terhadap perhitungan jarak menjadi seimbang.
 
@@ -534,7 +534,7 @@ Orange menyediakan widget **Distances** yang langsung menghitung distance matrix
                                                        ↘ [Hierarchical Clustering]
 ```
 
-![Workflow Orange — Pengukuran Jarak Iris di Orange](Pertemuan3/DataIrisOrangePengukuranJarak.png)
+![Workflow Orange — Pengukuran Jarak Iris di Orange](DataIrisOrangePengukuranJarak.png)
 
 > **Gambar:** Workflow Orange yang menghitung 4 metrik jarak (Euclidean, Manhattan, Spearman, Hamming) dari data Iris yang dimuat melalui CSV File Import dan SQL Table, masing-masing diteruskan ke Distance Matrix dan disimpan via Save Distance Matrix.
 
@@ -553,7 +553,7 @@ Dataset **Palmer Penguins** dipilih sebagai data campuran (*mixed-type*) untuk t
 Dataset **Palmer Penguins** berasal dari penelitian ekologi di **Palmer Station, Antartika** oleh Dr. Kristen Gorman dan LTER (Long-Term Ecological Research) Network. Data ini mencatat pengamatan morfologi dan isotop pada tiga spesies penguin: *Adelie*, *Chinstrap*, dan *Gentoo* yang tersebar di tiga pulau: Torgersen, Biscoe, dan Dream. Dataset ini sangat populer sebagai alternatif dataset Iris untuk eksplorasi data. Terdapat **344 baris** dan **17 kolom** (di luar `penguin_id`).
 
 ```python
-df_penguins = pd.read_csv("DataCampuranPertemuan3/Penguins/penguins_lter.csv")
+df_penguins = pd.read_csv("penguins_lter.csv")
 df_penguins.head()
 ```
 
@@ -615,7 +615,7 @@ Data Palmer Penguins juga dimuat langsung dari database PostgreSQL menggunakan w
 | **Table** | `penguins_lter` |
 | **Total baris** | 344 |
 
-![Koneksi SQL Table ke PostgreSQL Penguins](DataCampuranPertemuan3/Penguins/PostgreKeOrange.png)
+![Koneksi SQL Table ke PostgreSQL Penguins](PostgreKeOrange.png)
 
 > **Gambar:** Widget SQL Table Orange berhasil terhubung ke database PostgreSQL `Penguins` dan memuat tabel `penguins_lter` (344 baris). Tombol Connect berhasil, dan kolom-kolom seperti `species`, `island`, `culmen_length_mm`, `body_mass_g`, `sex` tersedia untuk dialirkan ke pipeline pengukuran jarak.
 
@@ -669,7 +669,7 @@ Dataset ini memiliki tipe yang sangat beragam — 6 numerik, 2 ordinal, 4 nomina
 - **Hamming** tepat untuk `species`, `island`, `region`, `study_name` — semua kategori nominal tanpa urutan — serta `sex` dan `clutch_completion` yang biner.
 ```
 
-![Workflow Orange — Pengukuran Jarak Data Campuran Palmer Penguins](DataCampuranPertemuan3/Penguins/DataCampuranPenguins.png)
+![Workflow Orange — Pengukuran Jarak Data Campuran Palmer Penguins](DataCampuranPenguins.png)
 
 > **Gambar:** Workflow `Penguins.ows` di Orange Data Mining. Terdapat dua sumber data: **CSV File Import** (`penguins_lter.csv`) dan **SQL Table** (database PostgreSQL `Penguins`, tabel `penguins_lter`, 344 baris), masing-masing dialirkan ke **Data Table** lalu ke empat widget **Distances** (Euclidean, Manhattan, Spearman, Hamming) → **Distance Matrix** → **Save Distance Matrix**.
 
@@ -680,12 +680,12 @@ File workflow Orange dan script SQL yang digunakan untuk tugas ini dapat diunduh
 ```{admonition} 📥 Download File
 :class: note
 **Orange Workflow:**
-{download}`Penguins.ows — Workflow Pengukuran Jarak Mixed-Type <DataCampuranPertemuan3/Penguins/Penguins.ows>`
+{download}`Penguins.ows — Workflow Pengukuran Jarak Mixed-Type <Penguins.ows>`
 
 File ini berisi seluruh pipeline Orange: dua sumber data (CSV `penguins_lter.csv` dan SQL `penguins_lter` @ `Penguins`), masing-masing dialirkan ke 4 widget **Distances** (Euclidean, Manhattan, Spearman, Hamming) → **Distance Matrix** → **Save Distance Matrix**.
 
 **SQL Database:**
-{download}`Penguins.sql — Script SQL Pembuatan Database & Tabel Palmer Penguins <DataCampuranPertemuan3/Penguins/Penguins.sql>`
+{download}`Penguins.sql — Script SQL Pembuatan Database & Tabel Palmer Penguins <Penguins.sql>`
 
 File ini berisi script SQL untuk membuat database `Penguins`, tabel `penguins_lter` dengan 17 kolom (study_name, sample_number, species, region, island, stage, individual_id, clutch_completion, date_egg, culmen_length_mm, culmen_depth_mm, flipper_length_mm, body_mass_g, sex, delta_15_n, delta_13_c, comments), dan mengimpor 344 data penguin dari Palmer Station ke PostgreSQL.
 ```
@@ -762,7 +762,7 @@ Verifikasi semua output yang harus ada dalam laporan, termasuk **3 tugas utama p
 ```{admonition} Identitas Mahasiswa
 :class: note
 
-**Nama:** Aisya | **NIM:** 240411100025
+**Nama:** Shofiatul Mahmudah | **NIM:** 240411100023
 ```
 
 

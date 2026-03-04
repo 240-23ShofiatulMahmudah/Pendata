@@ -1364,7 +1364,7 @@ Sedangkan <code class="docutils literal notranslate"><span class="pre">Iris-seto
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<p><img alt="Distribusi Fitur Sebelum Scaling" src="Pertemuan3/SebelumScalling.png" /></p>
+<p><img alt="Distribusi Fitur Sebelum Scaling" src="_images/SebelumScalling.png" /></p>
 <p>Histogram menunjukkan bahwa setiap fitur memiliki skala dan rentang yang berbeda-beda — <code class="docutils literal notranslate"><span class="pre">petal_length</span></code> memiliki rentang paling lebar.</p>
 </section>
 <hr class="docutils" />
@@ -1375,7 +1375,7 @@ Sedangkan <code class="docutils literal notranslate"><span class="pre">Iris-seto
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<p><img alt="Distribusi Fitur Sesudah Scaling" src="Pertemuan3/SesudahScalling.png" /></p>
+<p><img alt="Distribusi Fitur Sesudah Scaling" src="_images/SesudahScalling.png" /></p>
 <p>Setelah scaling, semua fitur berada pada skala yang sama (terpusat di 0), sehingga kontribusi setiap fitur terhadap perhitungan jarak menjadi seimbang.</p>
 </section>
 <hr class="docutils" />
@@ -1517,7 +1517,7 @@ Sedangkan <code class="docutils literal notranslate"><span class="pre">Iris-seto
                                                        ↘ [Hierarchical Clustering]
 </pre></div>
 </div>
-<p><img alt="Workflow Orange — Pengukuran Jarak Iris di Orange" src="Pertemuan3/DataIrisOrangePengukuranJarak.png" /></p>
+<p><img alt="Workflow Orange — Pengukuran Jarak Iris di Orange" src="_images/DataIrisOrangePengukuranJarak.png" /></p>
 <blockquote>
 <div><p><strong>Gambar:</strong> Workflow Orange yang menghitung 4 metrik jarak (Euclidean, Manhattan, Spearman, Hamming) dari data Iris yang dimuat melalui CSV File Import dan SQL Table, masing-masing diteruskan ke Distance Matrix dan disimpan via Save Distance Matrix.</p>
 </div></blockquote>
@@ -1533,7 +1533,7 @@ Sedangkan <code class="docutils literal notranslate"><span class="pre">Iris-seto
 <section id="profil-dataset-palmer-penguins">
 <h3>3.15.1 Profil Dataset Palmer Penguins<a class="headerlink" href="#profil-dataset-palmer-penguins" title="Link to this heading">#</a></h3>
 <p>Dataset <strong>Palmer Penguins</strong> berasal dari penelitian ekologi di <strong>Palmer Station, Antartika</strong> oleh Dr. Kristen Gorman dan LTER (Long-Term Ecological Research) Network. Data ini mencatat pengamatan morfologi dan isotop pada tiga spesies penguin: <em>Adelie</em>, <em>Chinstrap</em>, dan <em>Gentoo</em> yang tersebar di tiga pulau: Torgersen, Biscoe, dan Dream. Dataset ini sangat populer sebagai alternatif dataset Iris untuk eksplorasi data. Terdapat <strong>344 baris</strong> dan <strong>17 kolom</strong> (di luar <code class="docutils literal notranslate"><span class="pre">penguin_id</span></code>).</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df_penguins</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;DataCampuranPertemuan3/Penguins/penguins_lter.csv&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df_penguins</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;penguins_lter.csv&quot;</span><span class="p">)</span>
 <span class="n">df_penguins</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1789,7 +1789,7 @@ Sedangkan <code class="docutils literal notranslate"><span class="pre">Iris-seto
 </tbody>
 </table>
 </div>
-<p><img alt="Koneksi SQL Table ke PostgreSQL Penguins" src="DataCampuranPertemuan3/Penguins/PostgreKeOrange.png" /></p>
+<p><img alt="Koneksi SQL Table ke PostgreSQL Penguins" src="_images/PostgreKeOrange.png" /></p>
 <blockquote>
 <div><p><strong>Gambar:</strong> Widget SQL Table Orange berhasil terhubung ke database PostgreSQL <code class="docutils literal notranslate"><span class="pre">Penguins</span></code> dan memuat tabel <code class="docutils literal notranslate"><span class="pre">penguins_lter</span></code> (344 baris). Tombol Connect berhasil, dan kolom-kolom seperti <code class="docutils literal notranslate"><span class="pre">species</span></code>, <code class="docutils literal notranslate"><span class="pre">island</span></code>, <code class="docutils literal notranslate"><span class="pre">culmen_length_mm</span></code>, <code class="docutils literal notranslate"><span class="pre">body_mass_g</span></code>, <code class="docutils literal notranslate"><span class="pre">sex</span></code> tersedia untuk dialirkan ke pipeline pengukuran jarak.</p>
 </div></blockquote>
@@ -1894,7 +1894,7 @@ Sedangkan <code class="docutils literal notranslate"><span class="pre">Iris-seto
 <li><p><strong>Hamming</strong> tepat untuk <code class="docutils literal notranslate"><span class="pre">species</span></code>, <code class="docutils literal notranslate"><span class="pre">island</span></code>, <code class="docutils literal notranslate"><span class="pre">region</span></code>, <code class="docutils literal notranslate"><span class="pre">study_name</span></code> — semua kategori nominal tanpa urutan — serta <code class="docutils literal notranslate"><span class="pre">sex</span></code> dan <code class="docutils literal notranslate"><span class="pre">clutch_completion</span></code> yang biner.</p></li>
 </ul>
 </div>
-<p><img alt="Workflow Orange — Pengukuran Jarak Data Campuran Palmer Penguins" src="DataCampuranPertemuan3/Penguins/DataCampuranPenguins.png" /></p>
+<p><img alt="Workflow Orange — Pengukuran Jarak Data Campuran Palmer Penguins" src="_images/DataCampuranPenguins.png" /></p>
 <blockquote>
 <div><p><strong>Gambar:</strong> Workflow <code class="docutils literal notranslate"><span class="pre">Penguins.ows</span></code> di Orange Data Mining. Terdapat dua sumber data: <strong>CSV File Import</strong> (<code class="docutils literal notranslate"><span class="pre">penguins_lter.csv</span></code>) dan <strong>SQL Table</strong> (database PostgreSQL <code class="docutils literal notranslate"><span class="pre">Penguins</span></code>, tabel <code class="docutils literal notranslate"><span class="pre">penguins_lter</span></code>, 344 baris), masing-masing dialirkan ke <strong>Data Table</strong> lalu ke empat widget <strong>Distances</strong> (Euclidean, Manhattan, Spearman, Hamming) → <strong>Distance Matrix</strong> → <strong>Save Distance Matrix</strong>.</p>
 </div></blockquote>
@@ -1905,10 +1905,10 @@ Sedangkan <code class="docutils literal notranslate"><span class="pre">Iris-seto
 <div class="note admonition">
 <p class="admonition-title">📥 Download File</p>
 <p><strong>Orange Workflow:</strong>
-<code class="xref download docutils literal notranslate"><span class="pre">Penguins.ows</span> <span class="pre">—</span> <span class="pre">Workflow</span> <span class="pre">Pengukuran</span> <span class="pre">Jarak</span> <span class="pre">Mixed-Type</span></code></p>
+<a class="reference download internal" download="" href="_downloads/59e70dc5bb67bbabc975bcb0f1be0e72/Penguins.ows"><code class="xref download docutils literal notranslate"><span class="pre">Penguins.ows</span> <span class="pre">—</span> <span class="pre">Workflow</span> <span class="pre">Pengukuran</span> <span class="pre">Jarak</span> <span class="pre">Mixed-Type</span></code></a></p>
 <p>File ini berisi seluruh pipeline Orange: dua sumber data (CSV <code class="docutils literal notranslate"><span class="pre">penguins_lter.csv</span></code> dan SQL <code class="docutils literal notranslate"><span class="pre">penguins_lter</span></code> &#64; <code class="docutils literal notranslate"><span class="pre">Penguins</span></code>), masing-masing dialirkan ke 4 widget <strong>Distances</strong> (Euclidean, Manhattan, Spearman, Hamming) → <strong>Distance Matrix</strong> → <strong>Save Distance Matrix</strong>.</p>
 <p><strong>SQL Database:</strong>
-<code class="xref download docutils literal notranslate"><span class="pre">Penguins.sql</span> <span class="pre">—</span> <span class="pre">Script</span> <span class="pre">SQL</span> <span class="pre">Pembuatan</span> <span class="pre">Database</span> <span class="pre">&amp;</span> <span class="pre">Tabel</span> <span class="pre">Palmer</span> <span class="pre">Penguins</span></code></p>
+<a class="reference download internal" download="" href="_downloads/f444c63264e026650e9df86a93ce5751/Penguins.sql"><code class="xref download docutils literal notranslate"><span class="pre">Penguins.sql</span> <span class="pre">—</span> <span class="pre">Script</span> <span class="pre">SQL</span> <span class="pre">Pembuatan</span> <span class="pre">Database</span> <span class="pre">&amp;</span> <span class="pre">Tabel</span> <span class="pre">Palmer</span> <span class="pre">Penguins</span></code></a></p>
 <p>File ini berisi script SQL untuk membuat database <code class="docutils literal notranslate"><span class="pre">Penguins</span></code>, tabel <code class="docutils literal notranslate"><span class="pre">penguins_lter</span></code> dengan 17 kolom (study_name, sample_number, species, region, island, stage, individual_id, clutch_completion, date_egg, culmen_length_mm, culmen_depth_mm, flipper_length_mm, body_mass_g, sex, delta_15_n, delta_13_c, comments), dan mengimpor 344 data penguin dari Palmer Station ke PostgreSQL.</p>
 </div>
 </section>
@@ -2095,7 +2095,7 @@ Sedangkan <code class="docutils literal notranslate"><span class="pre">Iris-seto
 <hr class="docutils" />
 <div class="note admonition">
 <p class="admonition-title">Identitas Mahasiswa</p>
-<p><strong>Nama:</strong> Aisya | <strong>NIM:</strong> 240411100025</p>
+<p><strong>Nama:</strong> Shofiatul Mahmudah | <strong>NIM:</strong> 240411100023</p>
 </div>
 </section>
 </section>
