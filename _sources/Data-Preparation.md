@@ -232,9 +232,9 @@ plt.tight_layout()
 plt.show()
 ```
 
-![Pairplot Iris Dataset](Assets/Pertemuan_2/Pairplot.png)
+![Pairplot Iris Dataset](Pairplot.png)
 
-![Scatter Plot Petal](Assets/Pertemuan_2/ScatterPlotPetal.png)
+![Scatter Plot Petal](ScatterPlotPetal.png)
 
 ---
 
