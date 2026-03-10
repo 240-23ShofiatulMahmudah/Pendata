@@ -1,0 +1,18 @@
+# Book settings
+title: Penambangan Data - Shofiatul Mahmudah
+author: Shofiatul Mahmudah (240411100023)
+logo: logo.png
+
+# Force re-execution of notebooks on each build.
+execute:
+  execute_notebooks: 'off'
+
+# Information about where the book exists on the web
+repository:
+  url: https://github.com/username/jokian-pendata-sofi
+  branch: main
+
+# Add GitHub buttons to your book
+html:
+  use_issues_button: true
+  use_repository_button: true
