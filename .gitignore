@@ -1,0 +1,4 @@
+.venv/
+materi-pendat/_build/
+__pycache__/
+*.pyc
