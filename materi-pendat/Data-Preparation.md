@@ -303,6 +303,12 @@ WHERE sepal_length IS NOT NULL;
 
 > Kalau widget **SQL Table** belum tersedia: buka **Options → Add-ons**, cari dan install add-on **Orange-SQL** atau yang mendukung koneksi database.
 
+### 3.12.4 Bukti Data CSV ke PostgreSQL
+
+![Bukti data CSV telah dimasukkan ke PostgreSQL](Pertemuan3/Gambar-Csv-ke-PostgreeSQL.png)
+
+> **Gambar:** Dataset telah berhasil dimasukkan ke PostgreSQL dan dapat diakses melalui query SQL. Data tersedia dalam tabel relasional yang siap dihubungkan ke Orange melalui widget **SQL Table**.
+
 ---
 
 
@@ -411,7 +417,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-![Distribusi Fitur Sebelum Scaling](SebelumScalling.png)
+![Distribusi Fitur Sebelum Scaling](Pertemuan3/SebelumScalling.png)
 
 Histogram menunjukkan bahwa setiap fitur memiliki skala dan rentang yang berbeda-beda — `petal_length` memiliki rentang paling lebar.
 
@@ -425,7 +431,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-![Distribusi Fitur Sesudah Scaling](SesudahScalling.png)
+![Distribusi Fitur Sesudah Scaling](Pertemuan3/SesudahScalling.png)
 
 Setelah scaling, semua fitur berada pada skala yang sama (terpusat di 0), sehingga kontribusi setiap fitur terhadap perhitungan jarak menjadi seimbang.
 
@@ -504,7 +510,7 @@ Orange menyediakan widget **Distances** yang langsung menghitung distance matrix
                                                        ↘ [Hierarchical Clustering]
 ```
 
-![Workflow Orange — Pengukuran Jarak Iris di Orange](DataIrisOrangePengukuranJarak.png)
+![Workflow Orange — Pengukuran Jarak Iris di Orange](Pertemuan3/DataIrisOrangePengukuranJarak.png)
 
 > **Gambar:** Workflow Orange yang menghitung 4 metrik jarak (Euclidean, Manhattan, Spearman, Hamming) dari data Iris yang dimuat melalui CSV File Import dan SQL Table, masing-masing diteruskan ke Distance Matrix dan disimpan via Save Distance Matrix.
 
@@ -581,7 +587,7 @@ Data Palmer Penguins juga dimuat langsung dari database PostgreSQL menggunakan w
 | **Table** | `penguins_lter` |
 | **Total baris** | 344 |
 
-![Koneksi SQL Table ke PostgreSQL Penguins](PostgreKeOrange.png)
+![Koneksi SQL Table ke PostgreSQL Penguins](Pertemuan3/PostgreKeOrange.png)
 
 > **Gambar:** Widget SQL Table Orange berhasil terhubung ke database PostgreSQL `Penguins` dan memuat tabel `penguins_lter` (344 baris). Tombol Connect berhasil, dan kolom-kolom seperti `species`, `island`, `culmen_length_mm`, `body_mass_g`, `sex` tersedia untuk dialirkan ke pipeline pengukuran jarak.
 
@@ -635,7 +641,7 @@ Dataset ini memiliki tipe yang sangat beragam — 6 numerik, 2 ordinal, 4 nomina
 - **Hamming** tepat untuk `species`, `island`, `region`, `study_name` — semua kategori nominal tanpa urutan — serta `sex` dan `clutch_completion` yang biner.
 ```
 
-![Workflow Orange — Pengukuran Jarak Data Campuran Palmer Penguins](DataCampuranPenguins.png)
+![Workflow Orange — Pengukuran Jarak Data Campuran Palmer Penguins](Pertemuan3/DataCampuranPenguins.png)
 
 > **Gambar:** Workflow `Penguins.ows` di Orange Data Mining. Terdapat dua sumber data: **CSV File Import** (`penguins_lter.csv`) dan **SQL Table** (database PostgreSQL `Penguins`, tabel `penguins_lter`, 344 baris), masing-masing dialirkan ke **Data Table** lalu ke empat widget **Distances** (Euclidean, Manhattan, Spearman, Hamming) → **Distance Matrix** → **Save Distance Matrix**.
 
@@ -905,7 +911,224 @@ Ini merupakan pendekatan praktis dari **Gower Distance** yang telah dijelaskan d
 ---
 
 
-## 3.16 Menyimpan Dataset Final
+## 3.16 Ringkasan Langkah KNN Imputation
+
+### 3.16.1 Untuk Data Numerik (Iris)
+
+```
+1. Cek missing value → tidak ada → buat missing value buatan
+2. Tentukan baris target dan kolom yang kosong
+3. Hitung jarak Euclidean ke semua baris lain (tanpa kolom yang kosong)
+4. Urutkan jarak dari terkecil
+5. Ambil k=3 tetangga terdekat
+6. Isi missing value = rata-rata nilai kolom target dari 3 tetangga
+```
+
+### 3.16.2 Untuk Data Campuran (Palmer Penguins)
+
+```
+1. Cek missing value → tidak ada → buat missing value buatan
+2. Tentukan tipe setiap kolom: numerik, ordinal, atau kategorikal
+3. Konversi ordinal ke numerik dengan rumus z = (r-1)/(m-1)
+4. Normalisasi kolom numerik dengan Min-Max Scaling
+5. Hitung jarak numerik+ordinal menggunakan Euclidean
+6. Hitung jarak kategorikal menggunakan (P-M)/P
+7. Jumlahkan: d_total = d_num+ord + d_kat
+8. Urutkan jarak dari terkecil
+9. Ambil k=3 tetangga terdekat
+10. Isi missing value = rata-rata nilai target dari 3 tetangga (KNN Regression)
+```
+
+---
+
+
+## 3.17 Cara Menghitung Jarak Total dengan Excel
+
+Selain menggunakan Python, perhitungan jarak KNN juga dapat dilakukan menggunakan **Microsoft Excel**. Berikut panduan langkah demi langkah untuk **kedua dataset** (Iris dan Palmer Penguins).
+
+---
+
+### 3.17.1 Perhitungan Jarak Euclidean — Dataset Iris (di Excel)
+
+#### Langkah 1: Siapkan Data
+
+Buat tabel di Excel dengan kolom:
+
+| | A | B | C | D | E |
+|---|---|---|---|---|---|
+| **1** | **Baris** | **sepal_length** | **sepal_width** | **petal_length** | **petal_width** |
+| **2** | 0 | 5.1 | 3.5 | 1.4 | 0.2 |
+| **3** | 1 | 4.9 | 3.0 | 1.4 | 0.2 |
+| **4** | ... | ... | ... | ... | ... |
+| **7** | 5 (target) | 5.4 | 3.9 | 1.7 | **NaN** |
+
+#### Langkah 2: Hitung Jarak Euclidean (tanpa kolom petal_width)
+
+Karena `petal_width` (kolom E) missing pada baris 5, jarak hanya dihitung dari 3 kolom: B, C, D.
+
+Di kolom baru (misal **F**), masukkan rumus untuk setiap baris (contoh baris 2 = baris data ke-0):
+
+```
+=SQRT((B$7-B2)^2 + (C$7-C2)^2 + (D$7-D2)^2)
+```
+
+**Penjelasan rumus:**
+- `B$7` = `sepal_length` baris target (5.4) — tanda `$` mengunci baris 7 agar tidak bergeser saat di-copy ke bawah
+- `B2` = `sepal_length` baris yang sedang dibandingkan
+- `SQRT(...)` = akar kuadrat (√) untuk Euclidean distance
+
+#### Langkah 3: Copy rumus ke bawah
+
+Drag rumus dari F2 ke bawah sampai semua baris (kecuali baris target sendiri). Excel akan otomatis menghitung jarak ke setiap baris.
+
+#### Langkah 4: Urutkan dan Ambil 3 Terkecil
+
+1. Pilih seluruh data termasuk kolom jarak
+2. Klik **Data → Sort** → Sort by kolom F (Jarak) → **Smallest to Largest**
+3. Ambil **3 baris teratas** — itulah 3 tetangga terdekat
+
+#### Langkah 5: Hitung Rata-Rata (Imputasi)
+
+Di sel terpisah, hitung rata-rata `petal_width` dari 3 tetangga:
+
+```
+=AVERAGE(E_tetangga1, E_tetangga2, E_tetangga3)
+```
+
+Contoh jika 3 tetangga ada di baris 2, 5, 8:
+
+```
+=AVERAGE(E2, E5, E8)
+```
+
+**Hasil yang diharapkan:** `0.2333`
+
+---
+
+### 3.17.2 Perhitungan Jarak Campuran — Palmer Penguins (di Excel)
+
+Untuk data campuran, perhitungan lebih kompleks karena melibatkan 3 komponen: **numerik, ordinal, dan kategorikal**.
+
+#### Langkah 1: Siapkan Data Palmer Penguins
+
+Buat tabel dengan kolom yang relevan:
+
+| | A | B | C | D | E | F |
+|---|---|---|---|---|---|---|
+| **1** | **Baris** | **culmen_length_mm** | **culmen_depth_mm** | **flipper_length_mm** | **island** | **sex** |
+| **2** | 0 | 39.1 | 18.7 | 181 | Torgersen | MALE |
+| **3** | 1 | 39.5 | 17.4 | 186 | Torgersen | FEMALE |
+| **4** | ... | ... | ... | ... | ... | ... |
+
+Tambahkan juga kolom **body_mass_g** (kolom G) untuk nanti diambil nilainya dari tetangga.
+
+Baris target (baris 5): `culmen_length=38.9, culmen_depth=17.8, flipper_length=181, island=Torgersen, sex=FEMALE, clutch_completion=No, body_mass_g=?`
+
+#### Langkah 2: Normalisasi Numerik (Min-Max)
+
+Buat kolom bantu untuk normalisasi setiap kolom numerik:
+
+```
+=(B2 - MIN(B$2:B$345)) / (MAX(B$2:B$345) - MIN(B$2:B$345))
+```
+
+Rumus ini menerapkan: $x' = \frac{x - x_{min}}{x_{max} - x_{min}}$
+
+Lakukan untuk setiap kolom numerik: `culmen_length_mm`, `culmen_depth_mm`, `flipper_length_mm`.
+
+#### Langkah 3: Hitung Jarak Numerik (Euclidean)
+
+Buat kolom untuk $d_{num}$:
+
+```
+=SQRT((H$7-H2)^2 + (I$7-I2)^2 + (J$7-J2)^2)
+```
+
+Di mana H, I, J = kolom numerik yang sudah dinormalisasi.
+
+#### Langkah 4: Hitung Jarak Kategorikal
+
+Buat kolom bantu untuk pencocokan kategorikal (island, sex, clutch_completion):
+
+**Kolom K** (island sama?):
+```
+=IF(E2=E$7, 1, 0)
+```
+
+**Kolom L** (sex sama?):
+```
+=IF(F2=F$7, 1, 0)
+```
+
+**Kolom M** (clutch_completion sama?):
+```
+=IF(G2=G$7, 1, 0)
+```
+
+Lalu buat kolom **N** untuk $d_{kat}$:
+
+```
+=(3 - (K2+L2+M2)) / 3
+```
+
+Rumus ini menerapkan: $d_{kat} = \frac{P - M}{P}$ di mana $P = 3$ kolom kategorikal.
+
+#### Langkah 5: Hitung Jarak Total
+
+Buat kolom **O** untuk $d_{total}$:
+
+```
+=N2 + P2
+```
+
+Ini menerapkan: $d_{total} = d_{num} + d_{kat}$
+
+#### Langkah 6: Urutkan dan Ambil 3 Terkecil
+
+1. Pilih seluruh data
+2. **Data → Sort** by kolom d_total → **Smallest to Largest**
+3. Ambil **3 baris teratas** sebagai tetangga terdekat
+
+#### Langkah 7: Hitung Rata-Rata Body Mass (Imputasi)
+
+```
+=AVERAGE(G_tetangga1, G_tetangga2, G_tetangga3)
+```
+
+**Hasil yang diharapkan:** `3175.00`
+
+---
+
+### 3.17.3 Ringkasan Rumus Excel
+
+| Komponen | Rumus Excel | Penjelasan |
+|---|---|---|
+| **Euclidean Distance** (Iris) | `=SQRT((B$7-B2)^2+(C$7-C2)^2+(D$7-D2)^2)` | Jarak 3 kolom numerik |
+| **Normalisasi Min-Max** | `=(B2-MIN(B$2:B$345))/(MAX(B$2:B$345)-MIN(B$2:B$345))` | Skala 0–1 |
+| **Jarak Numerik** | `=SQRT((H$7-H2)^2+(I$7-I2)^2+(J$7-J2)^2)` | Euclidean pada kolom numerik ternormalisasi |
+| **Pencocokan Kategorikal** | `=IF(E2=E$7,1,0)` | 1 jika sama, 0 jika beda |
+| **Jarak Kategorikal** | `=(3-(K2+L2+M2))/3` | $(P-M)/P$ |
+| **Jarak Total** | `=N2+P2` | $d_{num} + d_{kat}$ |
+| **Imputasi (rata-rata)** | `=AVERAGE(...)` | Rata-rata k tetangga terdekat |
+
+### 3.17.4 Tips Penting di Excel
+
+1. **Gunakan `$` (absolute reference)** pada sel baris target agar rumus tidak bergeser saat di-copy ke bawah. Contoh: `B$7` mengunci baris 7.
+2. **Filter dulu** baris yang memiliki missing value pada kolom lain sebelum menghitung.
+3. **Jangan ikutkan baris target** dalam perhitungan jarak (jarak ke diri sendiri = 0, tidak bermakna).
+4. Gunakan **Conditional Formatting** untuk mewarnai 3 jarak terkecil secara otomatis:
+   - Pilih kolom jarak → **Home → Conditional Formatting → Top/Bottom Rules → Top 10 Items** → ubah ke **3** → pilih warna hijau.
+5. Untuk dataset besar, gunakan fungsi **SMALL()** untuk menemukan jarak terkecil tanpa perlu sort:
+   - `=SMALL(O2:O345, 1)` → jarak terkecil ke-1
+   - `=SMALL(O2:O345, 2)` → jarak terkecil ke-2
+   - `=SMALL(O2:O345, 3)` → jarak terkecil ke-3
+6. Gunakan **INDEX-MATCH** untuk menemukan baris mana yang memiliki jarak tersebut:
+   - `=INDEX(A2:A345, MATCH(SMALL(O2:O345,1), O2:O345, 0))` → nomor baris tetangga ke-1
+
+---
+
+
+## 3.18 Menyimpan Dataset Final
 
 Setelah seluruh proses preparation selesai, dataset yang sudah di-scale disimpan sebagai file CSV baru untuk digunakan pada tahap **Modeling**.
 
@@ -930,7 +1153,7 @@ Dataset ini telah siap digunakan untuk tahap Modeling (KNN, Decision Tree, SVM, 
 
 ---
 
-## 3.17 Checklist Output Pertemuan 3
+## 3.19 Checklist Output Pertemuan 3
 
 Verifikasi semua output yang harus ada dalam laporan, termasuk **3 tugas utama pertemuan ini**:
 
@@ -951,8 +1174,32 @@ Verifikasi semua output yang harus ada dalam laporan, termasuk **3 tugas utama p
 | **13** ⭐ | **KNN Imputation — Data Numerik (Iris): missing value buatan, perhitungan manual, kode Python** | ✅ | Section 3.15.8 — Iris baris 5, petal_width, k=3, hasil 0.2333 |
 | **14** ⭐ | **KNN Imputation — Data Campuran (Palmer Penguins): normalisasi, jarak kategorikal, jarak total** | ✅ | Section 3.15.9 — body_mass_g, mixed-type KNN |
 | 15 | Notebook KNN Imputation (`.ipynb`) tersedia | ✅ | `Pertemuan3_KNN_Imputation.ipynb` — Iris + Penguins |
+| 16 | Ringkasan langkah KNN Imputation | ✅ | Section 3.16 — numerik + campuran |
+| 17 | Cara perhitungan jarak total menggunakan Excel | ✅ | Section 3.17 — rumus lengkap Iris + Penguins |
+| 18 | Bukti data CSV ke PostgreSQL | ✅ | Section 3.12.4 — `Gambar-Csv-ke-PostgreeSQL.png` |
 
 > ⭐ = Komponen tugas yang wajib dinilai pada Pertemuan 3.
+
+---
+
+
+## 3.20 Kesimpulan
+
+1. **Dataset Iris** termasuk data numerik, sehingga missing value dapat diimputasi langsung menggunakan **Euclidean distance** → hasilnya: `petal_width = 0.2333`
+
+2. **Dataset Palmer Penguins** merupakan data campuran, sehingga:
+   - Data numerik (`culmen_length_mm`, `culmen_depth_mm`, `flipper_length_mm`) dinormalisasi dengan **Min-Max Scaling**
+   - Data kategorikal (`island`, `sex`, `clutch_completion`) dihitung menggunakan rasio ketidaksamaan $(P-M)/P$
+   - Jarak total = jarak numerik + jarak kategorikal
+   - Hasilnya: `body_mass_g = 3175.00`
+
+3. Jika ada missing value pada satu kolom, maka **kolom tersebut tidak diikutkan** dalam perhitungan jarak
+
+4. Setelah semua jarak dihitung, dipilih **k = 3 tetangga terdekat**
+
+5. Karena nilai yang diisi berupa numerik, maka digunakan **KNN Regression** (rata-rata dari tetangga terdekat)
+
+6. Perhitungan KNN Imputation dapat dilakukan dengan **3 cara**: perhitungan manual (tulisan), **kode Python**, atau **Microsoft Excel** — ketiganya menghasilkan hasil yang sama
 
 ---
 

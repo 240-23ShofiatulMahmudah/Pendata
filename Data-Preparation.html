@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -390,6 +390,7 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-umum-workflow-orange">3.12.1 Langkah Umum (Workflow Orange)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-parameter-koneksi">3.12.2 Contoh Parameter Koneksi</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-query-sql">3.12.3 Contoh Query SQL</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bukti-data-csv-ke-postgresql">3.12.4 Bukti Data CSV ke PostgreSQL</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#encoding-label">3.6 Encoding Label</a></li>
@@ -431,8 +432,37 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-imputasi-knn-pada-palmer-penguins">3.15.9.5 Hasil Imputasi KNN pada Palmer Penguins</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menyimpan-dataset-final">3.16 Menyimpan Dataset Final</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#checklist-output-pertemuan-3">3.17 Checklist Output Pertemuan 3</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ringkasan-langkah-knn-imputation">3.16 Ringkasan Langkah KNN Imputation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#untuk-data-numerik-iris">3.16.1 Untuk Data Numerik (Iris)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#untuk-data-campuran-palmer-penguins">3.16.2 Untuk Data Campuran (Palmer Penguins)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cara-menghitung-jarak-total-dengan-excel">3.17 Cara Menghitung Jarak Total dengan Excel</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#perhitungan-jarak-euclidean-dataset-iris-di-excel">3.17.1 Perhitungan Jarak Euclidean — Dataset Iris (di Excel)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-1-siapkan-data">Langkah 1: Siapkan Data</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-2-hitung-jarak-euclidean-tanpa-kolom-petal-width">Langkah 2: Hitung Jarak Euclidean (tanpa kolom petal_width)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-3-copy-rumus-ke-bawah">Langkah 3: Copy rumus ke bawah</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-4-urutkan-dan-ambil-3-terkecil">Langkah 4: Urutkan dan Ambil 3 Terkecil</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-5-hitung-rata-rata-imputasi">Langkah 5: Hitung Rata-Rata (Imputasi)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#perhitungan-jarak-campuran-palmer-penguins-di-excel">3.17.2 Perhitungan Jarak Campuran — Palmer Penguins (di Excel)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-1-siapkan-data-palmer-penguins">Langkah 1: Siapkan Data Palmer Penguins</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-2-normalisasi-numerik-min-max">Langkah 2: Normalisasi Numerik (Min-Max)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-3-hitung-jarak-numerik-euclidean">Langkah 3: Hitung Jarak Numerik (Euclidean)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-4-hitung-jarak-kategorikal">Langkah 4: Hitung Jarak Kategorikal</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-5-hitung-jarak-total">Langkah 5: Hitung Jarak Total</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-6-urutkan-dan-ambil-3-terkecil">Langkah 6: Urutkan dan Ambil 3 Terkecil</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-7-hitung-rata-rata-body-mass-imputasi">Langkah 7: Hitung Rata-Rata Body Mass (Imputasi)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ringkasan-rumus-excel">3.17.3 Ringkasan Rumus Excel</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tips-penting-di-excel">3.17.4 Tips Penting di Excel</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menyimpan-dataset-final">3.18 Menyimpan Dataset Final</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#checklist-output-pertemuan-3">3.19 Checklist Output Pertemuan 3</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">3.20 Kesimpulan</a></li>
 </ul>
             </nav>
         </div>
@@ -1089,6 +1119,13 @@ Sedangkan <code class="docutils literal notranslate"><span class="pre">Iris-seto
 </div>
 <blockquote>
 <div><p>Kalau widget <strong>SQL Table</strong> belum tersedia: buka <strong>Options → Add-ons</strong>, cari dan install add-on <strong>Orange-SQL</strong> atau yang mendukung koneksi database.</p>
+</div></blockquote>
+</section>
+<section id="bukti-data-csv-ke-postgresql">
+<h3>3.12.4 Bukti Data CSV ke PostgreSQL<a class="headerlink" href="#bukti-data-csv-ke-postgresql" title="Link to this heading">#</a></h3>
+<p><img alt="Bukti data CSV telah dimasukkan ke PostgreSQL" src="_images/Gambar-Csv-ke-PostgreeSQL.png" /></p>
+<blockquote>
+<div><p><strong>Gambar:</strong> Dataset telah berhasil dimasukkan ke PostgreSQL dan dapat diakses melalui query SQL. Data tersedia dalam tabel relasional yang siap dihubungkan ke Orange melalui widget <strong>SQL Table</strong>.</p>
 </div></blockquote>
 </section>
 </section>
@@ -2153,8 +2190,325 @@ Sedangkan <code class="docutils literal notranslate"><span class="pre">Iris-seto
 </section>
 </section>
 <hr class="docutils" />
+<section id="ringkasan-langkah-knn-imputation">
+<h2>3.16 Ringkasan Langkah KNN Imputation<a class="headerlink" href="#ringkasan-langkah-knn-imputation" title="Link to this heading">#</a></h2>
+<section id="untuk-data-numerik-iris">
+<h3>3.16.1 Untuk Data Numerik (Iris)<a class="headerlink" href="#untuk-data-numerik-iris" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>1. Cek missing value → tidak ada → buat missing value buatan
+2. Tentukan baris target dan kolom yang kosong
+3. Hitung jarak Euclidean ke semua baris lain (tanpa kolom yang kosong)
+4. Urutkan jarak dari terkecil
+5. Ambil k=3 tetangga terdekat
+6. Isi missing value = rata-rata nilai kolom target dari 3 tetangga
+</pre></div>
+</div>
+</section>
+<section id="untuk-data-campuran-palmer-penguins">
+<h3>3.16.2 Untuk Data Campuran (Palmer Penguins)<a class="headerlink" href="#untuk-data-campuran-palmer-penguins" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>1. Cek missing value → tidak ada → buat missing value buatan
+2. Tentukan tipe setiap kolom: numerik, ordinal, atau kategorikal
+3. Konversi ordinal ke numerik dengan rumus z = (r-1)/(m-1)
+4. Normalisasi kolom numerik dengan Min-Max Scaling
+5. Hitung jarak numerik+ordinal menggunakan Euclidean
+6. Hitung jarak kategorikal menggunakan (P-M)/P
+7. Jumlahkan: d_total = d_num+ord + d_kat
+8. Urutkan jarak dari terkecil
+9. Ambil k=3 tetangga terdekat
+10. Isi missing value = rata-rata nilai target dari 3 tetangga (KNN Regression)
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="cara-menghitung-jarak-total-dengan-excel">
+<h2>3.17 Cara Menghitung Jarak Total dengan Excel<a class="headerlink" href="#cara-menghitung-jarak-total-dengan-excel" title="Link to this heading">#</a></h2>
+<p>Selain menggunakan Python, perhitungan jarak KNN juga dapat dilakukan menggunakan <strong>Microsoft Excel</strong>. Berikut panduan langkah demi langkah untuk <strong>kedua dataset</strong> (Iris dan Palmer Penguins).</p>
+<hr class="docutils" />
+<section id="perhitungan-jarak-euclidean-dataset-iris-di-excel">
+<h3>3.17.1 Perhitungan Jarak Euclidean — Dataset Iris (di Excel)<a class="headerlink" href="#perhitungan-jarak-euclidean-dataset-iris-di-excel" title="Link to this heading">#</a></h3>
+<section id="langkah-1-siapkan-data">
+<h4>Langkah 1: Siapkan Data<a class="headerlink" href="#langkah-1-siapkan-data" title="Link to this heading">#</a></h4>
+<p>Buat tabel di Excel dengan kolom:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>A</p></th>
+<th class="head"><p>B</p></th>
+<th class="head"><p>C</p></th>
+<th class="head"><p>D</p></th>
+<th class="head"><p>E</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>1</strong></p></td>
+<td><p><strong>Baris</strong></p></td>
+<td><p><strong>sepal_length</strong></p></td>
+<td><p><strong>sepal_width</strong></p></td>
+<td><p><strong>petal_length</strong></p></td>
+<td><p><strong>petal_width</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>2</strong></p></td>
+<td><p>0</p></td>
+<td><p>5.1</p></td>
+<td><p>3.5</p></td>
+<td><p>1.4</p></td>
+<td><p>0.2</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>3</strong></p></td>
+<td><p>1</p></td>
+<td><p>4.9</p></td>
+<td><p>3.0</p></td>
+<td><p>1.4</p></td>
+<td><p>0.2</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>4</strong></p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>7</strong></p></td>
+<td><p>5 (target)</p></td>
+<td><p>5.4</p></td>
+<td><p>3.9</p></td>
+<td><p>1.7</p></td>
+<td><p><strong>NaN</strong></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="langkah-2-hitung-jarak-euclidean-tanpa-kolom-petal-width">
+<h4>Langkah 2: Hitung Jarak Euclidean (tanpa kolom petal_width)<a class="headerlink" href="#langkah-2-hitung-jarak-euclidean-tanpa-kolom-petal-width" title="Link to this heading">#</a></h4>
+<p>Karena <code class="docutils literal notranslate"><span class="pre">petal_width</span></code> (kolom E) missing pada baris 5, jarak hanya dihitung dari 3 kolom: B, C, D.</p>
+<p>Di kolom baru (misal <strong>F</strong>), masukkan rumus untuk setiap baris (contoh baris 2 = baris data ke-0):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>=SQRT((B$7-B2)^2 + (C$7-C2)^2 + (D$7-D2)^2)
+</pre></div>
+</div>
+<p><strong>Penjelasan rumus:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">B$7</span></code> = <code class="docutils literal notranslate"><span class="pre">sepal_length</span></code> baris target (5.4) — tanda <code class="docutils literal notranslate"><span class="pre">$</span></code> mengunci baris 7 agar tidak bergeser saat di-copy ke bawah</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">B2</span></code> = <code class="docutils literal notranslate"><span class="pre">sepal_length</span></code> baris yang sedang dibandingkan</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SQRT(...)</span></code> = akar kuadrat (√) untuk Euclidean distance</p></li>
+</ul>
+</section>
+<section id="langkah-3-copy-rumus-ke-bawah">
+<h4>Langkah 3: Copy rumus ke bawah<a class="headerlink" href="#langkah-3-copy-rumus-ke-bawah" title="Link to this heading">#</a></h4>
+<p>Drag rumus dari F2 ke bawah sampai semua baris (kecuali baris target sendiri). Excel akan otomatis menghitung jarak ke setiap baris.</p>
+</section>
+<section id="langkah-4-urutkan-dan-ambil-3-terkecil">
+<h4>Langkah 4: Urutkan dan Ambil 3 Terkecil<a class="headerlink" href="#langkah-4-urutkan-dan-ambil-3-terkecil" title="Link to this heading">#</a></h4>
+<ol class="arabic simple">
+<li><p>Pilih seluruh data termasuk kolom jarak</p></li>
+<li><p>Klik <strong>Data → Sort</strong> → Sort by kolom F (Jarak) → <strong>Smallest to Largest</strong></p></li>
+<li><p>Ambil <strong>3 baris teratas</strong> — itulah 3 tetangga terdekat</p></li>
+</ol>
+</section>
+<section id="langkah-5-hitung-rata-rata-imputasi">
+<h4>Langkah 5: Hitung Rata-Rata (Imputasi)<a class="headerlink" href="#langkah-5-hitung-rata-rata-imputasi" title="Link to this heading">#</a></h4>
+<p>Di sel terpisah, hitung rata-rata <code class="docutils literal notranslate"><span class="pre">petal_width</span></code> dari 3 tetangga:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">=</span><span class="n">AVERAGE</span><span class="p">(</span><span class="n">E_tetangga1</span><span class="p">,</span> <span class="n">E_tetangga2</span><span class="p">,</span> <span class="n">E_tetangga3</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Contoh jika 3 tetangga ada di baris 2, 5, 8:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">=</span><span class="n">AVERAGE</span><span class="p">(</span><span class="n">E2</span><span class="p">,</span> <span class="n">E5</span><span class="p">,</span> <span class="n">E8</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Hasil yang diharapkan:</strong> <code class="docutils literal notranslate"><span class="pre">0.2333</span></code></p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="perhitungan-jarak-campuran-palmer-penguins-di-excel">
+<h3>3.17.2 Perhitungan Jarak Campuran — Palmer Penguins (di Excel)<a class="headerlink" href="#perhitungan-jarak-campuran-palmer-penguins-di-excel" title="Link to this heading">#</a></h3>
+<p>Untuk data campuran, perhitungan lebih kompleks karena melibatkan 3 komponen: <strong>numerik, ordinal, dan kategorikal</strong>.</p>
+<section id="langkah-1-siapkan-data-palmer-penguins">
+<h4>Langkah 1: Siapkan Data Palmer Penguins<a class="headerlink" href="#langkah-1-siapkan-data-palmer-penguins" title="Link to this heading">#</a></h4>
+<p>Buat tabel dengan kolom yang relevan:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>A</p></th>
+<th class="head"><p>B</p></th>
+<th class="head"><p>C</p></th>
+<th class="head"><p>D</p></th>
+<th class="head"><p>E</p></th>
+<th class="head"><p>F</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>1</strong></p></td>
+<td><p><strong>Baris</strong></p></td>
+<td><p><strong>culmen_length_mm</strong></p></td>
+<td><p><strong>culmen_depth_mm</strong></p></td>
+<td><p><strong>flipper_length_mm</strong></p></td>
+<td><p><strong>island</strong></p></td>
+<td><p><strong>sex</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>2</strong></p></td>
+<td><p>0</p></td>
+<td><p>39.1</p></td>
+<td><p>18.7</p></td>
+<td><p>181</p></td>
+<td><p>Torgersen</p></td>
+<td><p>MALE</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>3</strong></p></td>
+<td><p>1</p></td>
+<td><p>39.5</p></td>
+<td><p>17.4</p></td>
+<td><p>186</p></td>
+<td><p>Torgersen</p></td>
+<td><p>FEMALE</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>4</strong></p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Tambahkan juga kolom <strong>body_mass_g</strong> (kolom G) untuk nanti diambil nilainya dari tetangga.</p>
+<p>Baris target (baris 5): <code class="docutils literal notranslate"><span class="pre">culmen_length=38.9,</span> <span class="pre">culmen_depth=17.8,</span> <span class="pre">flipper_length=181,</span> <span class="pre">island=Torgersen,</span> <span class="pre">sex=FEMALE,</span> <span class="pre">clutch_completion=No,</span> <span class="pre">body_mass_g=?</span></code></p>
+</section>
+<section id="langkah-2-normalisasi-numerik-min-max">
+<h4>Langkah 2: Normalisasi Numerik (Min-Max)<a class="headerlink" href="#langkah-2-normalisasi-numerik-min-max" title="Link to this heading">#</a></h4>
+<p>Buat kolom bantu untuk normalisasi setiap kolom numerik:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>=(B2 - MIN(B$2:B$345)) / (MAX(B$2:B$345) - MIN(B$2:B$345))
+</pre></div>
+</div>
+<p>Rumus ini menerapkan: <span class="math notranslate nohighlight">\(x' = \frac{x - x_{min}}{x_{max} - x_{min}}\)</span></p>
+<p>Lakukan untuk setiap kolom numerik: <code class="docutils literal notranslate"><span class="pre">culmen_length_mm</span></code>, <code class="docutils literal notranslate"><span class="pre">culmen_depth_mm</span></code>, <code class="docutils literal notranslate"><span class="pre">flipper_length_mm</span></code>.</p>
+</section>
+<section id="langkah-3-hitung-jarak-numerik-euclidean">
+<h4>Langkah 3: Hitung Jarak Numerik (Euclidean)<a class="headerlink" href="#langkah-3-hitung-jarak-numerik-euclidean" title="Link to this heading">#</a></h4>
+<p>Buat kolom untuk <span class="math notranslate nohighlight">\(d_{num}\)</span>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>=SQRT((H$7-H2)^2 + (I$7-I2)^2 + (J$7-J2)^2)
+</pre></div>
+</div>
+<p>Di mana H, I, J = kolom numerik yang sudah dinormalisasi.</p>
+</section>
+<section id="langkah-4-hitung-jarak-kategorikal">
+<h4>Langkah 4: Hitung Jarak Kategorikal<a class="headerlink" href="#langkah-4-hitung-jarak-kategorikal" title="Link to this heading">#</a></h4>
+<p>Buat kolom bantu untuk pencocokan kategorikal (island, sex, clutch_completion):</p>
+<p><strong>Kolom K</strong> (island sama?):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>=IF(E2=E$7, 1, 0)
+</pre></div>
+</div>
+<p><strong>Kolom L</strong> (sex sama?):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>=IF(F2=F$7, 1, 0)
+</pre></div>
+</div>
+<p><strong>Kolom M</strong> (clutch_completion sama?):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>=IF(G2=G$7, 1, 0)
+</pre></div>
+</div>
+<p>Lalu buat kolom <strong>N</strong> untuk <span class="math notranslate nohighlight">\(d_{kat}\)</span>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">=</span><span class="p">(</span><span class="mi">3</span> <span class="o">-</span> <span class="p">(</span><span class="n">K2</span><span class="o">+</span><span class="n">L2</span><span class="o">+</span><span class="n">M2</span><span class="p">))</span> <span class="o">/</span> <span class="mi">3</span>
+</pre></div>
+</div>
+<p>Rumus ini menerapkan: <span class="math notranslate nohighlight">\(d_{kat} = \frac{P - M}{P}\)</span> di mana <span class="math notranslate nohighlight">\(P = 3\)</span> kolom kategorikal.</p>
+</section>
+<section id="langkah-5-hitung-jarak-total">
+<h4>Langkah 5: Hitung Jarak Total<a class="headerlink" href="#langkah-5-hitung-jarak-total" title="Link to this heading">#</a></h4>
+<p>Buat kolom <strong>O</strong> untuk <span class="math notranslate nohighlight">\(d_{total}\)</span>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">=</span><span class="n">N2</span> <span class="o">+</span> <span class="n">P2</span>
+</pre></div>
+</div>
+<p>Ini menerapkan: <span class="math notranslate nohighlight">\(d_{total} = d_{num} + d_{kat}\)</span></p>
+</section>
+<section id="langkah-6-urutkan-dan-ambil-3-terkecil">
+<h4>Langkah 6: Urutkan dan Ambil 3 Terkecil<a class="headerlink" href="#langkah-6-urutkan-dan-ambil-3-terkecil" title="Link to this heading">#</a></h4>
+<ol class="arabic simple">
+<li><p>Pilih seluruh data</p></li>
+<li><p><strong>Data → Sort</strong> by kolom d_total → <strong>Smallest to Largest</strong></p></li>
+<li><p>Ambil <strong>3 baris teratas</strong> sebagai tetangga terdekat</p></li>
+</ol>
+</section>
+<section id="langkah-7-hitung-rata-rata-body-mass-imputasi">
+<h4>Langkah 7: Hitung Rata-Rata Body Mass (Imputasi)<a class="headerlink" href="#langkah-7-hitung-rata-rata-body-mass-imputasi" title="Link to this heading">#</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">=</span><span class="n">AVERAGE</span><span class="p">(</span><span class="n">G_tetangga1</span><span class="p">,</span> <span class="n">G_tetangga2</span><span class="p">,</span> <span class="n">G_tetangga3</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Hasil yang diharapkan:</strong> <code class="docutils literal notranslate"><span class="pre">3175.00</span></code></p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="ringkasan-rumus-excel">
+<h3>3.17.3 Ringkasan Rumus Excel<a class="headerlink" href="#ringkasan-rumus-excel" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Komponen</p></th>
+<th class="head"><p>Rumus Excel</p></th>
+<th class="head"><p>Penjelasan</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Euclidean Distance</strong> (Iris)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">=SQRT((B$7-B2)^2+(C$7-C2)^2+(D$7-D2)^2)</span></code></p></td>
+<td><p>Jarak 3 kolom numerik</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Normalisasi Min-Max</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">=(B2-MIN(B$2:B$345))/(MAX(B$2:B$345)-MIN(B$2:B$345))</span></code></p></td>
+<td><p>Skala 0–1</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Jarak Numerik</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">=SQRT((H$7-H2)^2+(I$7-I2)^2+(J$7-J2)^2)</span></code></p></td>
+<td><p>Euclidean pada kolom numerik ternormalisasi</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Pencocokan Kategorikal</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">=IF(E2=E$7,1,0)</span></code></p></td>
+<td><p>1 jika sama, 0 jika beda</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Jarak Kategorikal</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">=(3-(K2+L2+M2))/3</span></code></p></td>
+<td><p><span class="math notranslate nohighlight">\((P-M)/P\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Jarak Total</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">=N2+P2</span></code></p></td>
+<td><p><span class="math notranslate nohighlight">\(d_{num} + d_{kat}\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Imputasi (rata-rata)</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">=AVERAGE(...)</span></code></p></td>
+<td><p>Rata-rata k tetangga terdekat</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="tips-penting-di-excel">
+<h3>3.17.4 Tips Penting di Excel<a class="headerlink" href="#tips-penting-di-excel" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Gunakan <code class="docutils literal notranslate"><span class="pre">$</span></code> (absolute reference)</strong> pada sel baris target agar rumus tidak bergeser saat di-copy ke bawah. Contoh: <code class="docutils literal notranslate"><span class="pre">B$7</span></code> mengunci baris 7.</p></li>
+<li><p><strong>Filter dulu</strong> baris yang memiliki missing value pada kolom lain sebelum menghitung.</p></li>
+<li><p><strong>Jangan ikutkan baris target</strong> dalam perhitungan jarak (jarak ke diri sendiri = 0, tidak bermakna).</p></li>
+<li><p>Gunakan <strong>Conditional Formatting</strong> untuk mewarnai 3 jarak terkecil secara otomatis:</p>
+<ul class="simple">
+<li><p>Pilih kolom jarak → <strong>Home → Conditional Formatting → Top/Bottom Rules → Top 10 Items</strong> → ubah ke <strong>3</strong> → pilih warna hijau.</p></li>
+</ul>
+</li>
+<li><p>Untuk dataset besar, gunakan fungsi <strong>SMALL()</strong> untuk menemukan jarak terkecil tanpa perlu sort:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">=SMALL(O2:O345,</span> <span class="pre">1)</span></code> → jarak terkecil ke-1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">=SMALL(O2:O345,</span> <span class="pre">2)</span></code> → jarak terkecil ke-2</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">=SMALL(O2:O345,</span> <span class="pre">3)</span></code> → jarak terkecil ke-3</p></li>
+</ul>
+</li>
+<li><p>Gunakan <strong>INDEX-MATCH</strong> untuk menemukan baris mana yang memiliki jarak tersebut:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">=INDEX(A2:A345,</span> <span class="pre">MATCH(SMALL(O2:O345,1),</span> <span class="pre">O2:O345,</span> <span class="pre">0))</span></code> → nomor baris tetangga ke-1</p></li>
+</ul>
+</li>
+</ol>
+</section>
+</section>
+<hr class="docutils" />
 <section id="menyimpan-dataset-final">
-<h2>3.16 Menyimpan Dataset Final<a class="headerlink" href="#menyimpan-dataset-final" title="Link to this heading">#</a></h2>
+<h2>3.18 Menyimpan Dataset Final<a class="headerlink" href="#menyimpan-dataset-final" title="Link to this heading">#</a></h2>
 <p>Setelah seluruh proses preparation selesai, dataset yang sudah di-scale disimpan sebagai file CSV baru untuk digunakan pada tahap <strong>Modeling</strong>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df_modeling</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_scaled</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
 <span class="n">df_modeling</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">values</span>
@@ -2216,7 +2570,7 @@ Sedangkan <code class="docutils literal notranslate"><span class="pre">Iris-seto
 </section>
 <hr class="docutils" />
 <section id="checklist-output-pertemuan-3">
-<h2>3.17 Checklist Output Pertemuan 3<a class="headerlink" href="#checklist-output-pertemuan-3" title="Link to this heading">#</a></h2>
+<h2>3.19 Checklist Output Pertemuan 3<a class="headerlink" href="#checklist-output-pertemuan-3" title="Link to this heading">#</a></h2>
 <p>Verifikasi semua output yang harus ada dalam laporan, termasuk <strong>3 tugas utama pertemuan ini</strong>:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
@@ -2302,12 +2656,46 @@ Sedangkan <code class="docutils literal notranslate"><span class="pre">Iris-seto
 <td class="text-center"><p>✅</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">Pertemuan3_KNN_Imputation.ipynb</span></code> — Iris + Penguins</p></td>
 </tr>
+<tr class="row-odd"><td><p>16</p></td>
+<td><p>Ringkasan langkah KNN Imputation</p></td>
+<td class="text-center"><p>✅</p></td>
+<td><p>Section 3.16 — numerik + campuran</p></td>
+</tr>
+<tr class="row-even"><td><p>17</p></td>
+<td><p>Cara perhitungan jarak total menggunakan Excel</p></td>
+<td class="text-center"><p>✅</p></td>
+<td><p>Section 3.17 — rumus lengkap Iris + Penguins</p></td>
+</tr>
+<tr class="row-odd"><td><p>18</p></td>
+<td><p>Bukti data CSV ke PostgreSQL</p></td>
+<td class="text-center"><p>✅</p></td>
+<td><p>Section 3.12.4 — <code class="docutils literal notranslate"><span class="pre">Gambar-Csv-ke-PostgreeSQL.png</span></code></p></td>
+</tr>
 </tbody>
 </table>
 </div>
 <blockquote>
 <div><p>⭐ = Komponen tugas yang wajib dinilai pada Pertemuan 3.</p>
 </div></blockquote>
+</section>
+<hr class="docutils" />
+<section id="kesimpulan">
+<h2>3.20 Kesimpulan<a class="headerlink" href="#kesimpulan" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Dataset Iris</strong> termasuk data numerik, sehingga missing value dapat diimputasi langsung menggunakan <strong>Euclidean distance</strong> → hasilnya: <code class="docutils literal notranslate"><span class="pre">petal_width</span> <span class="pre">=</span> <span class="pre">0.2333</span></code></p></li>
+<li><p><strong>Dataset Palmer Penguins</strong> merupakan data campuran, sehingga:</p>
+<ul class="simple">
+<li><p>Data numerik (<code class="docutils literal notranslate"><span class="pre">culmen_length_mm</span></code>, <code class="docutils literal notranslate"><span class="pre">culmen_depth_mm</span></code>, <code class="docutils literal notranslate"><span class="pre">flipper_length_mm</span></code>) dinormalisasi dengan <strong>Min-Max Scaling</strong></p></li>
+<li><p>Data kategorikal (<code class="docutils literal notranslate"><span class="pre">island</span></code>, <code class="docutils literal notranslate"><span class="pre">sex</span></code>, <code class="docutils literal notranslate"><span class="pre">clutch_completion</span></code>) dihitung menggunakan rasio ketidaksamaan <span class="math notranslate nohighlight">\((P-M)/P\)</span></p></li>
+<li><p>Jarak total = jarak numerik + jarak kategorikal</p></li>
+<li><p>Hasilnya: <code class="docutils literal notranslate"><span class="pre">body_mass_g</span> <span class="pre">=</span> <span class="pre">3175.00</span></code></p></li>
+</ul>
+</li>
+<li><p>Jika ada missing value pada satu kolom, maka <strong>kolom tersebut tidak diikutkan</strong> dalam perhitungan jarak</p></li>
+<li><p>Setelah semua jarak dihitung, dipilih <strong>k = 3 tetangga terdekat</strong></p></li>
+<li><p>Karena nilai yang diisi berupa numerik, maka digunakan <strong>KNN Regression</strong> (rata-rata dari tetangga terdekat)</p></li>
+<li><p>Perhitungan KNN Imputation dapat dilakukan dengan <strong>3 cara</strong>: perhitungan manual (tulisan), <strong>kode Python</strong>, atau <strong>Microsoft Excel</strong> — ketiganya menghasilkan hasil yang sama</p></li>
+</ol>
 <hr class="docutils" />
 <div class="note admonition">
 <p class="admonition-title">Identitas Mahasiswa</p>
@@ -2404,6 +2792,7 @@ Sedangkan <code class="docutils literal notranslate"><span class="pre">Iris-seto
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-umum-workflow-orange">3.12.1 Langkah Umum (Workflow Orange)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-parameter-koneksi">3.12.2 Contoh Parameter Koneksi</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-query-sql">3.12.3 Contoh Query SQL</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bukti-data-csv-ke-postgresql">3.12.4 Bukti Data CSV ke PostgreSQL</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#encoding-label">3.6 Encoding Label</a></li>
@@ -2445,8 +2834,37 @@ Sedangkan <code class="docutils literal notranslate"><span class="pre">Iris-seto
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-imputasi-knn-pada-palmer-penguins">3.15.9.5 Hasil Imputasi KNN pada Palmer Penguins</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menyimpan-dataset-final">3.16 Menyimpan Dataset Final</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#checklist-output-pertemuan-3">3.17 Checklist Output Pertemuan 3</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ringkasan-langkah-knn-imputation">3.16 Ringkasan Langkah KNN Imputation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#untuk-data-numerik-iris">3.16.1 Untuk Data Numerik (Iris)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#untuk-data-campuran-palmer-penguins">3.16.2 Untuk Data Campuran (Palmer Penguins)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cara-menghitung-jarak-total-dengan-excel">3.17 Cara Menghitung Jarak Total dengan Excel</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#perhitungan-jarak-euclidean-dataset-iris-di-excel">3.17.1 Perhitungan Jarak Euclidean — Dataset Iris (di Excel)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-1-siapkan-data">Langkah 1: Siapkan Data</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-2-hitung-jarak-euclidean-tanpa-kolom-petal-width">Langkah 2: Hitung Jarak Euclidean (tanpa kolom petal_width)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-3-copy-rumus-ke-bawah">Langkah 3: Copy rumus ke bawah</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-4-urutkan-dan-ambil-3-terkecil">Langkah 4: Urutkan dan Ambil 3 Terkecil</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-5-hitung-rata-rata-imputasi">Langkah 5: Hitung Rata-Rata (Imputasi)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#perhitungan-jarak-campuran-palmer-penguins-di-excel">3.17.2 Perhitungan Jarak Campuran — Palmer Penguins (di Excel)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-1-siapkan-data-palmer-penguins">Langkah 1: Siapkan Data Palmer Penguins</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-2-normalisasi-numerik-min-max">Langkah 2: Normalisasi Numerik (Min-Max)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-3-hitung-jarak-numerik-euclidean">Langkah 3: Hitung Jarak Numerik (Euclidean)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-4-hitung-jarak-kategorikal">Langkah 4: Hitung Jarak Kategorikal</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-5-hitung-jarak-total">Langkah 5: Hitung Jarak Total</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-6-urutkan-dan-ambil-3-terkecil">Langkah 6: Urutkan dan Ambil 3 Terkecil</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-7-hitung-rata-rata-body-mass-imputasi">Langkah 7: Hitung Rata-Rata Body Mass (Imputasi)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ringkasan-rumus-excel">3.17.3 Ringkasan Rumus Excel</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tips-penting-di-excel">3.17.4 Tips Penting di Excel</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menyimpan-dataset-final">3.18 Menyimpan Dataset Final</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#checklist-output-pertemuan-3">3.19 Checklist Output Pertemuan 3</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">3.20 Kesimpulan</a></li>
 </ul>
   </nav></div>
 
