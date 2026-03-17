@@ -2,7 +2,7 @@
 Repository ini dibuat untuk Mata Kuliah Penambangan Data Kelas A Semester 4, Program Studi Teknik Informatika.
 
 Nama: ShofiatulMahmudah
-NIM: 2404110023
+NIM: 24041100023
 
 ## Panduan Cepat Jupyter Book (materi-pendat)
 

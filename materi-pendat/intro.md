@@ -4,7 +4,7 @@ Selamat datang di Jupyter Book untuk mata kuliah Penambangan Data. Buku ini meru
 
 ## Profil Mahasiswa
 - **Nama:** ShofiatulMahmudah
-- **NIM:** 2404110023
+- **NIM:** 24041100023
 - **Mata Kuliah:** Penambangan Data (Kelas A), Semester 4
 - **Program Studi:** Teknik Informatika
 

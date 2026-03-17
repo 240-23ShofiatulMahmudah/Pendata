@@ -7,7 +7,7 @@
 | | |
 |---|---|
 | **Nama** | ShofiatulMahmudah |
-| **NIM** | 2404110023 |
+| **NIM** | 24041100023 |
 | **Mata Kuliah** | Penambangan Data |
 | **Pertemuan** | 3 — Data_Preparation |
 ```
@@ -762,7 +762,7 @@ Verifikasi semua output yang harus ada dalam laporan, termasuk **3 tugas utama p
 ```{admonition} Identitas Mahasiswa
 :class: note
 
-**Nama:** ShofiatulMahmudah | **NIM:** 2404110023
+**Nama:** ShofiatulMahmudah | **NIM:** 24041100023
 ```
 
 
