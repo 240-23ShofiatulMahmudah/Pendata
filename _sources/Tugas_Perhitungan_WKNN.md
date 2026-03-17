@@ -5,7 +5,7 @@ title: Tugas_Perhitungan_WKNN
 
 # Tugas_Perhitungan_WKNN
 ## 1. Missing Value dengan WKNN (Perhitungan Manual)
-![WhatsApp Image 2026-03-11 at 11.46.37](https://hackmd.io/_uploads/r15tybUcbl.jpg)
+![WhatsApp_Image_2026-03-11_at_11.46.37.jpeg](WhatsApp_Image_2026-03-11_at_11.46.37.jpeg)
 
 Data ke-7 memiliki nilai JML yang hilang.
 Metode yang digunakan adalah Weighted K-Nearest Neighbor (WKNN).
@@ -164,5 +164,5 @@ JML = 1
     print("Prediksi JML =",pred)
 
 Output:
-![image](https://hackmd.io/_uploads/ryeSoWI5Ze.png)
+![image](JML.png)
 Dibulatkan: JML = 1
