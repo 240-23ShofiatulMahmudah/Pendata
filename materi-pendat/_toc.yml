@@ -1,0 +1,12 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+chapters:
+  - file: Business_Understanding
+  - file: Data_Understanding
+  - file: Data_Preparation
+  - file: Macam-Macam_Normalisasi_Data_Preprocessing
+  - file: pertemuan_3_data_preparation_markdown_saja
+  - file: Tugas_Perhitungan_WKNN
