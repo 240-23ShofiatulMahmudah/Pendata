@@ -6,8 +6,8 @@
 
 | | |
 |---|---|
-| **Nama** | Aisya |
-| **NIM** | 240411100025 |
+| **Nama** | ShofiatulMahmudah |
+| **NIM** | 2404110023 |
 | **Mata Kuliah** | Penambangan Data |
 | **Pertemuan** | 3 — Data_Preparation |
 ```
@@ -762,7 +762,7 @@ Verifikasi semua output yang harus ada dalam laporan, termasuk **3 tugas utama p
 ```{admonition} Identitas Mahasiswa
 :class: note
 
-**Nama:** Aisya | **NIM:** 240411100025
+**Nama:** ShofiatulMahmudah | **NIM:** 2404110023
 ```
 
 
