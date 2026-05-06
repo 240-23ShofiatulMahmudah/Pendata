@@ -73,7 +73,7 @@ Proses pencarian nilai di atas juga dilakukan ke semua sisa atribut lainnya (Tem
 
 Kesimpulan: Atribut Outlook dipilih sebagai Root Node (Akar Utama) karena memiliki nilai Gain Ratio tertinggi.
 
-![image](hasilplay.png)
+![image](hasilplay.jpeg)
 
 ### BAGIAN 2: Implementasi pada KNIME Analytics Platform
 
