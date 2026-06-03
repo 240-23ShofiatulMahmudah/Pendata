@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Peramalan Kadar Nitrogen Dioksida (NO₂) di Kabupaten Sumenep Madura Menggunakan K-Nearest Neighbor Regression Berdasarkan Data Sentinel-5P Copernicus &#8212; Penambangan Data - ShofiatulMahmudah</title>
+    <title>Prediksi Kadar \(NO_2\) di daerah Sumenep Madura &#8212; Penambangan Data - ShofiatulMahmudah</title>
   
   
   
@@ -60,6 +60,8 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'Peramalan kadar  NO2 di daerah Sumenep Madura';</script>
     <script src="_static/custom.js?v=80a3739c"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -183,7 +185,7 @@
 
 
 
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Peramalan Kadar Nitrogen Dioksida (NO₂) di Kabupaten Sumenep Madura Menggunakan K-Nearest Neighbor Regression Berdasarkan Data Sentinel-5P Copernicus</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Prediksi Kadar <span class="math notranslate nohighlight">\(NO_2\)</span> di daerah Sumenep Madura</a></li>
 </ul>
 
     </div>
@@ -366,7 +368,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Peramalan Kadar Nitrogen Dioksida (NO₂) di Kabupaten Sumenep Madura Menggunakan K-Nearest Neighbor Regression Berdasarkan Data Sentinel-5P Copernicus</h1>
+    <h1>Prediksi Kadar NO_2 di daerah Sumenep Madura</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -376,47 +378,20 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pendahuluan">1. Pendahuluan</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#latar-belakang">1.1 Latar Belakang</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#latar-belakang">Latar Belakang</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-pengumpulan-data">A. Pengumpulan Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b-preproccessing-data">B. Preproccessing Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penyelesaian-missing-value-menggunakan-interpolasi-linear">1. Penyelesaian Missing Value Menggunakan Interpolasi Linear</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-rata-rata-data-dan-mengubah-format-datetime">2. Menghitung Rata-rata Data dan Mengubah Format Datetime</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simpan-data-dalam-bentuk-file-csv">3. Simpan data dalam bentuk File CSV</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pengecekan-kelengkapan-data-time-series-harian-pada-csv">4. Pengecekan Kelengkapan Data Time Series Harian pada CSV</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deteksi-outlier-iqr">5. Deteksi Outlier IQR</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-penelitian">2. Tujuan Penelitian</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengumpulan-data">3. Pengumpulan Data</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sumber-data">3.1 Sumber Data</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#area-of-interest-aoi">3.2 Area of Interest (AOI)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spatial-extent">3.3 Spatial Extent</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rentang-waktu">3.4 Rentang Waktu</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#c-modelling-menggunakan-metode-knn-regression">C. Modelling menggunakan metode KNN Regression</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uji-korelasi-data">1. Uji Korelasi Data</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengambilan-data-menggunakan-openeo">4. Pengambilan Data Menggunakan OpenEO</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#koneksi-ke-openeo">4.1 Koneksi ke OpenEO</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-dataset-sentinel-5p">4.2 Load Dataset Sentinel-5P</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#agregasi-temporal-harian">4.3 Agregasi Temporal Harian</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menjalankan-job">4.5 Menjalankan Job</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing-data">5. Preprocessing Data</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#membaca-file-netcdf">5.1 Membaca File NetCDF</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mengatasi-missing-value">5.2 Mengatasi Missing Value</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#membentuk-data-time-series-harian">5.3 Membentuk Data Time Series Harian</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menyimpan-data-ke-csv">5.4 Menyimpan Data ke CSV</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pengecekan-missing-date">5.5 Pengecekan Missing Date</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpolasi-missing-date">5.6 Interpolasi Missing Date</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deteksi-outlier">6. Deteksi Outlier</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metode-iqr">6.1 Metode IQR</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menghapus-outlier">6.2 Menghapus Outlier</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#normalisasi-data">7. Normalisasi Data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformasi-time-series-menjadi-supervised-learning">8. Transformasi Time Series Menjadi Supervised Learning</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#knn-regression">9. KNN Regression</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluasi-model">10. Evaluasi Model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi">11. Visualisasi</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-dan-pembahasan">12. Hasil dan Pembahasan</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">13. Kesimpulan</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#daftar-pustaka">14. Daftar Pustaka</a></li>
 </ul>
             </nav>
         </div>
@@ -428,311 +403,440 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="peramalan-kadar-nitrogen-dioksida-no2-di-kabupaten-sumenep-madura-menggunakan-k-nearest-neighbor-regression-berdasarkan-data-sentinel-5p-copernicus">
-<h1>Peramalan Kadar Nitrogen Dioksida (NO₂) di Kabupaten Sumenep Madura Menggunakan K-Nearest Neighbor Regression Berdasarkan Data Sentinel-5P Copernicus<a class="headerlink" href="#peramalan-kadar-nitrogen-dioksida-no2-di-kabupaten-sumenep-madura-menggunakan-k-nearest-neighbor-regression-berdasarkan-data-sentinel-5p-copernicus" title="Link to this heading">#</a></h1>
-<section id="pendahuluan">
-<h2>1. Pendahuluan<a class="headerlink" href="#pendahuluan" title="Link to this heading">#</a></h2>
+  <section class="tex2jax_ignore mathjax_ignore" id="prediksi-kadar-no-2-di-daerah-sumenep-madura">
+<h1>Prediksi Kadar <span class="math notranslate nohighlight">\(NO_2\)</span> di daerah Sumenep Madura<a class="headerlink" href="#prediksi-kadar-no-2-di-daerah-sumenep-madura" title="Link to this heading">#</a></h1>
 <section id="latar-belakang">
-<h3>1.1 Latar Belakang<a class="headerlink" href="#latar-belakang" title="Link to this heading">#</a></h3>
-<p>Peningkatan aktivitas transportasi, pertumbuhan penduduk, serta berbagai aktivitas manusia dapat menyebabkan meningkatnya pencemaran udara. Salah satu polutan udara yang menjadi perhatian adalah Nitrogen Dioksida (NO₂). Gas ini umumnya berasal dari proses pembakaran bahan bakar fosil seperti kendaraan bermotor, industri, dan pembangkit energi.</p>
-<p>Konsentrasi NO₂ yang tinggi dapat menimbulkan dampak negatif terhadap kesehatan manusia, seperti gangguan sistem pernapasan, iritasi paru-paru, memperburuk penyakit asma, serta menyebabkan penurunan kualitas lingkungan. Oleh karena itu, pemantauan dan peramalan kadar NO₂ menjadi penting untuk mendukung pengambilan keputusan dalam pengelolaan kualitas udara.</p>
-<p>Pada penelitian ini dilakukan peramalan kadar NO₂ harian di Kabupaten Sumenep Madura menggunakan data satelit Sentinel-5P yang diperoleh melalui Copernicus Data Space Ecosystem. Metode yang digunakan adalah K-Nearest Neighbor (KNN) Regression dengan pendekatan time series.</p>
+<h2>Latar Belakang<a class="headerlink" href="#latar-belakang" title="Link to this heading">#</a></h2>
+<p>Pencemaran udara menjadi salah satu permasalahan lingkungan yang semakin meningkat akibat aktivitas industri, transportasi, dan pertumbuhan penduduk. Salah satu polutan yang perlu diperhatikan adalah Nitrogen Dioksida (NO₂), yaitu gas yang dihasilkan dari proses pembakaran bahan bakar fosil seperti kendaraan bermotor dan kegiatan industri. Paparan NO₂ dalam kadar tinggi dapat menyebabkan gangguan pernapasan serta berdampak negatif terhadap lingkungan.
+Oleh karena itu, pemantauan dan prediksi kadar NO₂ perlu dilakukan untuk mengetahui kondisi kualitas udara dan mendukung upaya pengendalian pencemaran. Dalam penelitian ini, digunakan data time series harian NO₂ untuk memprediksi kadar NO₂ pada periode berikutnya menggunakan metode KNN Regression.</p>
 </section>
-</section>
-<section id="tujuan-penelitian">
-<h2>2. Tujuan Penelitian<a class="headerlink" href="#tujuan-penelitian" title="Link to this heading">#</a></h2>
-<p>Tujuan penelitian ini adalah:</p>
-<p>Mengumpulkan data harian kadar NO₂ di Kabupaten Sumenep menggunakan Sentinel-5P.
-Melakukan preprocessing data untuk mengatasi missing value dan outlier.
-Membangun model KNN Regression untuk melakukan peramalan kadar NO₂.
-Mengevaluasi performa model menggunakan RMSE, R² Score, dan MAPE.</p>
-</section>
-<section id="pengumpulan-data">
-<h2>3. Pengumpulan Data<a class="headerlink" href="#pengumpulan-data" title="Link to this heading">#</a></h2>
-<section id="sumber-data">
-<h3>3.1 Sumber Data<a class="headerlink" href="#sumber-data" title="Link to this heading">#</a></h3>
-<p>Data diperoleh dari:</p>
-<p>Copernicus Data Space Ecosystem
-Sentinel-5P Level 2
-Band NO₂</p>
-</section>
-<section id="area-of-interest-aoi">
-<h3>3.2 Area of Interest (AOI)<a class="headerlink" href="#area-of-interest-aoi" title="Link to this heading">#</a></h3>
-<p><img alt="image" src="_images/titikkoordinat.png" /></p>
-<p>Wilayah penelitian berada pada Kabupaten Sumenep Madura dengan koordinat GeoJSON sebagai berikut:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-  <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Polygon&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;coordinates&quot;</span><span class="p">:</span> <span class="p">[[</span>
-    <span class="p">[</span><span class="mf">113.639145</span><span class="p">,</span> <span class="o">-</span><span class="mf">6.88689</span><span class="p">],</span>
-    <span class="p">[</span><span class="mf">113.638458</span><span class="p">,</span> <span class="o">-</span><span class="mf">6.944149</span><span class="p">],</span>
-    <span class="p">[</span><span class="mf">113.585587</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.027979</span><span class="p">],</span>
-    <span class="p">[</span><span class="mf">113.624725</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.092035</span><span class="p">],</span>
-    <span class="p">[</span><span class="mf">113.602753</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.123378</span><span class="p">],</span>
-    <span class="p">[</span><span class="mf">113.643951</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.12474</span><span class="p">],</span>
-    <span class="p">[</span><span class="mf">113.68103</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.104981</span><span class="p">],</span>
-    <span class="p">[</span><span class="mf">113.823853</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.12951</span><span class="p">],</span>
-    <span class="p">[</span><span class="mf">113.890457</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.132235</span><span class="p">],</span>
-    <span class="p">[</span><span class="mf">113.89389</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.120652</span><span class="p">],</span>
-    <span class="p">[</span><span class="mf">113.869171</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.095442</span><span class="p">],</span>
-    <span class="p">[</span><span class="mf">113.873978</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.075681</span><span class="p">],</span>
-    <span class="p">[</span><span class="mf">113.906937</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.046379</span><span class="p">],</span>
-    <span class="p">[</span><span class="mf">113.91655</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.038883</span><span class="p">],</span>
-    <span class="p">[</span><span class="mf">113.940582</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.052512</span><span class="p">],</span>
-    <span class="p">[</span><span class="mf">113.947449</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.047061</span><span class="p">],</span>
-    <span class="p">[</span><span class="mf">113.908997</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.01912</span><span class="p">],</span>
-    <span class="p">[</span><span class="mf">113.922729</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.010942</span><span class="p">],</span>
-    <span class="p">[</span><span class="mf">113.951569</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.041609</span><span class="p">],</span>
-    <span class="p">[</span><span class="mf">113.965302</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.036839</span><span class="p">],</span>
-    <span class="p">[</span><span class="mf">113.992081</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.002764</span><span class="p">],</span>
-    <span class="p">[</span><span class="mf">114.033966</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.006171</span><span class="p">],</span>
-    <span class="p">[</span><span class="mf">114.060745</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.000038</span><span class="p">],</span>
-    <span class="p">[</span><span class="mf">114.094391</span><span class="p">,</span> <span class="o">-</span><span class="mf">6.976865</span><span class="p">],</span>
-    <span class="p">[</span><span class="mf">114.114304</span><span class="p">,</span> <span class="o">-</span><span class="mf">6.978228</span><span class="p">],</span>
-    <span class="p">[</span><span class="mf">114.12323</span><span class="p">,</span> <span class="o">-</span><span class="mf">6.978228</span><span class="p">],</span>
-    <span class="p">[</span><span class="mf">114.103317</span><span class="p">,</span> <span class="o">-</span><span class="mf">6.938696</span><span class="p">],</span>
-    <span class="p">[</span><span class="mf">114.057312</span><span class="p">,</span> <span class="o">-</span><span class="mf">6.915521</span><span class="p">],</span>
-    <span class="p">[</span><span class="mf">113.985214</span><span class="p">,</span> <span class="o">-</span><span class="mf">6.8828</span><span class="p">],</span>
-    <span class="p">[</span><span class="mf">113.936462</span><span class="p">,</span> <span class="o">-</span><span class="mf">6.868484</span><span class="p">],</span>
-    <span class="p">[</span><span class="mf">113.900757</span><span class="p">,</span> <span class="o">-</span><span class="mf">6.863712</span><span class="p">],</span>
-    <span class="p">[</span><span class="mf">113.856812</span><span class="p">,</span> <span class="o">-</span><span class="mf">6.871893</span><span class="p">],</span>
-    <span class="p">[</span><span class="mf">113.796387</span><span class="p">,</span> <span class="o">-</span><span class="mf">6.88689</span><span class="p">],</span>
-    <span class="p">[</span><span class="mf">113.752441</span><span class="p">,</span> <span class="o">-</span><span class="mf">6.884164</span><span class="p">],</span>
-    <span class="p">[</span><span class="mf">113.720169</span><span class="p">,</span> <span class="o">-</span><span class="mf">6.890981</span><span class="p">],</span>
-    <span class="p">[</span><span class="mf">113.686523</span><span class="p">,</span> <span class="o">-</span><span class="mf">6.883482</span><span class="p">],</span>
-    <span class="p">[</span><span class="mf">113.639145</span><span class="p">,</span> <span class="o">-</span><span class="mf">6.88689</span><span class="p">]</span>
-  <span class="p">]]</span>
-<span class="p">}</span>
+<section id="a-pengumpulan-data">
+<h2>A. Pengumpulan Data<a class="headerlink" href="#a-pengumpulan-data" title="Link to this heading">#</a></h2>
+<p>Pengumpulan data time series harian kadar <span class="math notranslate nohighlight">\(NO_2\)</span> di daerah Sumenep. Pengumpulan data di ambil dari website <a class="reference external" href="https://dataspace.copernicus.eu/">https://dataspace.copernicus.eu/</a>, sebelumnya buat akun terlebih dahulu di website tersebut.</p>
+<p>Pertama, kalian bisa menggunakan Google Collaboration untuk menginstall openeo:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">openeo</span>
 </pre></div>
 </div>
-</section>
-<section id="spatial-extent">
-<h3>3.3 Spatial Extent<a class="headerlink" href="#spatial-extent" title="Link to this heading">#</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">spatial_extent</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;west&quot;</span><span class="p">:</span> <span class="mf">113.585587</span><span class="p">,</span>
-    <span class="s2">&quot;south&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mf">7.132235</span><span class="p">,</span>
-    <span class="s2">&quot;east&quot;</span><span class="p">:</span> <span class="mf">114.123230</span><span class="p">,</span>
-    <span class="s2">&quot;north&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mf">6.863712</span>
-<span class="p">}</span>
-
-</pre></div>
-</div>
-</section>
-<section id="rentang-waktu">
-<h3>3.4 Rentang Waktu<a class="headerlink" href="#rentang-waktu" title="Link to this heading">#</a></h3>
-<p>01 Januari 2023 – 31 Desember 2025</p>
-</section>
-</section>
-<section id="pengambilan-data-menggunakan-openeo">
-<h2>4. Pengambilan Data Menggunakan OpenEO<a class="headerlink" href="#pengambilan-data-menggunakan-openeo" title="Link to this heading">#</a></h2>
-<section id="koneksi-ke-openeo">
-<h3>4.1 Koneksi ke OpenEO<a class="headerlink" href="#koneksi-ke-openeo" title="Link to this heading">#</a></h3>
+<p>Kemudian tuliskan code ini di bawahnya:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">openeo</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">connection</span> <span class="o">=</span> <span class="n">openeo</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
-    <span class="s2">&quot;openeo.dataspace.copernicus.eu&quot;</span>
-<span class="p">)</span><span class="o">.</span><span class="n">authenticate_oidc</span><span class="p">()</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">connection</span> <span class="o">=</span> <span class="n">openeo</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;openeo.dataspace.copernicus.eu&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">authenticate_oidc</span><span class="p">()</span>
 </pre></div>
 </div>
-</section>
-<section id="load-dataset-sentinel-5p">
-<h3>4.2 Load Dataset Sentinel-5P<a class="headerlink" href="#load-dataset-sentinel-5p" title="Link to this heading">#</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">s5p</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">load_collection</span><span class="p">(</span>
+<p>Pada saat menjalankan baris code diatas (connection), nanti akan diminta authentikasi seperti output berikut:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Visit (link authentikasi) 📋 to authenticate.
+✅ Authorized successfully
+Authenticated using device code flow.
+</pre></div>
+</div>
+<p>Setelah mengklik link authentikasi tersebut, kalian bisa login menggunakan akun “copernicus” yang sudah kalian buat sebelumnya.</p>
+<p>Berikut code untuk titik koordinat yang akan diambil data <span class="math notranslate nohighlight">\(NO_2\)</span></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">aoi</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Polygon&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;coordinates&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">[</span>
+            <span class="p">[</span><span class="mf">113.5243492</span><span class="p">,</span> <span class="o">-</span><span class="mf">6.9050051</span><span class="p">],</span>
+            <span class="p">[</span><span class="mf">114.3366706</span><span class="p">,</span> <span class="o">-</span><span class="mf">6.8563145</span><span class="p">],</span>
+            <span class="p">[</span><span class="mf">114.4541553</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.3828604</span><span class="p">],</span>
+            <span class="p">[</span><span class="mf">113.6141396</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.3401378</span><span class="p">],</span>
+            <span class="p">[</span><span class="mf">113.6063073</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.3362537</span><span class="p">],</span>
+            <span class="p">[</span><span class="mf">113.5243492</span><span class="p">,</span> <span class="o">-</span><span class="mf">6.9050051</span><span class="p">]</span>
+        <span class="p">]</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+
+<span class="n">s5post</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">load_collection</span><span class="p">(</span>
     <span class="s2">&quot;SENTINEL_5P_L2&quot;</span><span class="p">,</span>
-    <span class="n">temporal_extent</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;2023-01-01&quot;</span><span class="p">,</span> <span class="s2">&quot;2025-12-31&quot;</span><span class="p">],</span>
+    <span class="n">temporal_extent</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;2023-10-01&quot;</span><span class="p">,</span> <span class="s2">&quot;2025-10-01&quot;</span><span class="p">],</span>
     <span class="n">spatial_extent</span><span class="o">=</span><span class="p">{</span>
-        <span class="s2">&quot;west&quot;</span><span class="p">:</span><span class="mf">113.585587</span><span class="p">,</span>
-        <span class="s2">&quot;south&quot;</span><span class="p">:</span><span class="o">-</span><span class="mf">7.132235</span><span class="p">,</span>
-        <span class="s2">&quot;east&quot;</span><span class="p">:</span><span class="mf">114.123230</span><span class="p">,</span>
-        <span class="s2">&quot;north&quot;</span><span class="p">:</span><span class="o">-</span><span class="mf">6.863712</span>
+        <span class="s2">&quot;west&quot;</span><span class="p">:</span> <span class="mf">113.5243492</span><span class="p">,</span>
+        <span class="s2">&quot;south&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mf">7.3828604</span><span class="p">,</span>
+        <span class="s2">&quot;east&quot;</span><span class="p">:</span> <span class="mf">114.4541553</span><span class="p">,</span>
+        <span class="s2">&quot;north&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mf">6.8563145</span>
     <span class="p">},</span>
-    <span class="n">bands</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;NO2&quot;</span><span class="p">]</span>
+    <span class="n">bands</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;NO2&quot;</span><span class="p">],</span>
 <span class="p">)</span>
-</pre></div>
-</div>
-</section>
-<section id="agregasi-temporal-harian">
-<h3>4.3 Agregasi Temporal Harian<a class="headerlink" href="#agregasi-temporal-harian" title="Link to this heading">#</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">s5p_daily</span> <span class="o">=</span> <span class="n">s5p</span><span class="o">.</span><span class="n">aggregate_temporal_period</span><span class="p">(</span>
+
+<span class="c1"># Aggregate per hari</span>
+<span class="n">s5p_no2_daily</span> <span class="o">=</span> <span class="n">s5post</span><span class="o">.</span><span class="n">aggregate_temporal_period</span><span class="p">(</span>
     <span class="n">reducer</span><span class="o">=</span><span class="s2">&quot;mean&quot;</span><span class="p">,</span>
     <span class="n">period</span><span class="o">=</span><span class="s2">&quot;day&quot;</span>
 <span class="p">)</span>
-</pre></div>
-</div>
-<p>4.4 Agregasi Spasial</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">s5p_no2</span> <span class="o">=</span> <span class="n">s5p_daily</span><span class="o">.</span><span class="n">aggregate_spatial</span><span class="p">(</span>
+
+<span class="c1"># Hitung rata-rata NO2 pada AOI</span>
+<span class="n">s5p_no2_aoi</span> <span class="o">=</span> <span class="n">s5p_no2_daily</span><span class="o">.</span><span class="n">aggregate_spatial</span><span class="p">(</span>
     <span class="n">reducer</span><span class="o">=</span><span class="s2">&quot;mean&quot;</span><span class="p">,</span>
     <span class="n">geometries</span><span class="o">=</span><span class="n">aoi</span>
 <span class="p">)</span>
 </pre></div>
 </div>
-</section>
-<section id="menjalankan-job">
-<h3>4.5 Menjalankan Job<a class="headerlink" href="#menjalankan-job" title="Link to this heading">#</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">job</span> <span class="o">=</span> <span class="n">s5p_no2</span><span class="o">.</span><span class="n">execute_batch</span><span class="p">(</span>
-    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;NO2 Sumenep Madura&quot;</span><span class="p">,</span>
-    <span class="n">outputfile</span><span class="o">=</span><span class="s2">&quot;NO2_Sumenep.nc&quot;</span>
-<span class="p">)</span>
+<p>Untuk mengambil titik koordinat kalian dapat mengunjungi website ini <a class="reference external" href="https://geojson.io/">https://geojson.io/</a>#map=14.8/-7.04732/112.69463
+Di dalam website tersebut kalian bisa memilih daerah mana yang akan diambil datanya dengan cara memberi shape kotak di daerah tersebut.</p>
+<p><img alt="original image" src="https://cdn.mathpix.com/snip/images/hAZYOM6H9qZqInvYR2H6u1JAAdh-vRTSW7VpnDNkLno.original.fullsize.png" /></p>
+<p>Di panel sebelah kanan terdapat data JSON yang berupa koordinat daerah yang kalian pilih, kalian salin terus sesuaikan dengan code diatas di bagian variabel “aoi” dan spatial_extent.</p>
+<p>Kemudian kalian tambahkan baris code dibawah untuk memulai pengambilan data:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">job</span> <span class="o">=</span> <span class="n">s5post</span><span class="o">.</span><span class="n">execute_batch</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;NO2 in Sumenep&quot;</span><span class="p">,</span> <span class="n">outputfile</span><span class="o">=</span><span class="s2">&quot;NO2Sumenep.nc&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>Tunggu sampai proses pengambilan data selesai, output proses seperti berikut:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span> <span class="n">Job</span> <span class="s1">&#39;j-2606030334024825a6f043f098bb9dd3&#39;</span><span class="p">:</span> <span class="n">send</span> <span class="s1">&#39;start&#39;</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">06</span> <span class="n">Job</span> <span class="s1">&#39;j-2606030334024825a6f043f098bb9dd3&#39;</span><span class="p">:</span> <span class="n">queued</span> <span class="p">(</span><span class="n">progress</span> <span class="mi">0</span><span class="o">%</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">11</span> <span class="n">Job</span> <span class="s1">&#39;j-2606030334024825a6f043f098bb9dd3&#39;</span><span class="p">:</span> <span class="n">queued</span> <span class="p">(</span><span class="n">progress</span> <span class="mi">0</span><span class="o">%</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">18</span> <span class="n">Job</span> <span class="s1">&#39;j-2606030334024825a6f043f098bb9dd3&#39;</span><span class="p">:</span> <span class="n">queued</span> <span class="p">(</span><span class="n">progress</span> <span class="mi">0</span><span class="o">%</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">26</span> <span class="n">Job</span> <span class="s1">&#39;j-2606030334024825a6f043f098bb9dd3&#39;</span><span class="p">:</span> <span class="n">queued</span> <span class="p">(</span><span class="n">progress</span> <span class="mi">0</span><span class="o">%</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">36</span> <span class="n">Job</span> <span class="s1">&#39;j-2606030334024825a6f043f098bb9dd3&#39;</span><span class="p">:</span> <span class="n">queued</span> <span class="p">(</span><span class="n">progress</span> <span class="mi">0</span><span class="o">%</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">48</span> <span class="n">Job</span> <span class="s1">&#39;j-2606030334024825a6f043f098bb9dd3&#39;</span><span class="p">:</span> <span class="n">queued</span> <span class="p">(</span><span class="n">progress</span> <span class="mi">0</span><span class="o">%</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mi">04</span> <span class="n">Job</span> <span class="s1">&#39;j-2606030334024825a6f043f098bb9dd3&#39;</span><span class="p">:</span> <span class="n">queued</span> <span class="p">(</span><span class="n">progress</span> <span class="mi">0</span><span class="o">%</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mi">23</span> <span class="n">Job</span> <span class="s1">&#39;j-2606030334024825a6f043f098bb9dd3&#39;</span><span class="p">:</span> <span class="n">running</span> <span class="p">(</span><span class="n">progress</span> <span class="n">N</span><span class="o">/</span><span class="n">A</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mi">47</span> <span class="n">Job</span> <span class="s1">&#39;j-2606030334024825a6f043f098bb9dd3&#39;</span><span class="p">:</span> <span class="n">running</span> <span class="p">(</span><span class="n">progress</span> <span class="n">N</span><span class="o">/</span><span class="n">A</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">02</span><span class="p">:</span><span class="mi">17</span> <span class="n">Job</span> <span class="s1">&#39;j-2606030334024825a6f043f098bb9dd3&#39;</span><span class="p">:</span> <span class="n">running</span> <span class="p">(</span><span class="n">progress</span> <span class="n">N</span><span class="o">/</span><span class="n">A</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">02</span><span class="p">:</span><span class="mi">54</span> <span class="n">Job</span> <span class="s1">&#39;j-2606030334024825a6f043f098bb9dd3&#39;</span><span class="p">:</span> <span class="n">running</span> <span class="p">(</span><span class="n">progress</span> <span class="n">N</span><span class="o">/</span><span class="n">A</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">03</span><span class="p">:</span><span class="mi">41</span> <span class="n">Job</span> <span class="s1">&#39;j-2606030334024825a6f043f098bb9dd3&#39;</span><span class="p">:</span> <span class="n">running</span> <span class="p">(</span><span class="n">progress</span> <span class="n">N</span><span class="o">/</span><span class="n">A</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">04</span><span class="p">:</span><span class="mi">40</span> <span class="n">Job</span> <span class="s1">&#39;j-2606030334024825a6f043f098bb9dd3&#39;</span><span class="p">:</span> <span class="n">running</span> <span class="p">(</span><span class="n">progress</span> <span class="n">N</span><span class="o">/</span><span class="n">A</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">05</span><span class="p">:</span><span class="mi">40</span> <span class="n">Job</span> <span class="s1">&#39;j-2606030334024825a6f043f098bb9dd3&#39;</span><span class="p">:</span> <span class="n">running</span> <span class="p">(</span><span class="n">progress</span> <span class="n">N</span><span class="o">/</span><span class="n">A</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">40</span> <span class="n">Job</span> <span class="s1">&#39;j-2606030334024825a6f043f098bb9dd3&#39;</span><span class="p">:</span> <span class="n">finished</span> <span class="p">(</span><span class="n">progress</span> <span class="mi">100</span><span class="o">%</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Ketika proses pengambilan data, aktivitas kalian akan terekam di halaman <a class="reference external" href="https://editor.openeo.org/?server=https%3A%2F%2Fopeneo.dataspace.copernicus.eu%2Fopeneo%2F1.2">https://editor.openeo.org/?server=https%3A%2F%2Fopeneo.dataspace.copernicus.eu%2Fopeneo%2F1.2</a>, di halaman tersebut terdapat nama dataset dan status pengambilan data.</p>
+<p><img alt="original image" src="https://cdn.mathpix.com/snip/images/PYEpsdFIyS9SpdMoH3m6iCezaxxHcIE5-zXgrcVNlp4.original.fullsize.png" /></p>
 </section>
-</section>
-<section id="preprocessing-data">
-<h2>5. Preprocessing Data<a class="headerlink" href="#preprocessing-data" title="Link to this heading">#</a></h2>
-<section id="membaca-file-netcdf">
-<h3>5.1 Membaca File NetCDF<a class="headerlink" href="#membaca-file-netcdf" title="Link to this heading">#</a></h3>
+<section id="b-preproccessing-data">
+<h2>B. Preproccessing Data<a class="headerlink" href="#b-preproccessing-data" title="Link to this heading">#</a></h2>
+<p>Setelah pengambilan data selesai, data tersebut dapat diunduh di halaman <a class="reference external" href="https://editor.openeo.org/?server=https%3A%2F%2Fopeneo.dataspace.copernicus.eu%2Fopeneo%2F1.2">https://editor.openeo.org/?server=https%3A%2F%2Fopeneo.dataspace.copernicus.eu%2Fopeneo%2F1.2</a>  File akan berbentuk .nc. Kita hanya memerlukankolom date dan NO2 menggunakan code dibawah:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">netCDF4</span>
 
-<span class="n">ds</span> <span class="o">=</span> <span class="n">netCDF4</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="s2">&quot;NO2_Sumenep.nc&quot;</span><span class="p">)</span>
+<span class="n">file_path</span> <span class="o">=</span> <span class="s2">&quot;NO2Sumenep.nc&quot;</span>
+<span class="n">ds</span> <span class="o">=</span> <span class="n">netCDF4</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
 
+<span class="c1"># Lihat seluruh variabel yang tersedia</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;📦 Variabel dalam file:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">variables</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+<span class="c1"># dict_keys([&#39;t&#39;, &#39;x&#39;, &#39;y&#39;, &#39;crs&#39;, &#39;NO2&#39;])</span>
+
+<span class="c1"># Ambil NO2</span>
 <span class="n">no2</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s2">&quot;NO2&quot;</span><span class="p">][:]</span>
 
+<span class="c1"># Ambil Time</span>
 <span class="n">time</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s2">&quot;t&quot;</span><span class="p">][:]</span>
 
-<span class="n">time_units</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s2">&quot;t&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">units</span>
+<span class="c1"># Konversi waktu ke format tanggal jika punya atribut &#39;units&#39;</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">time_units</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s2">&quot;t&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">units</span>
+    <span class="n">dates</span> <span class="o">=</span> <span class="n">netCDF4</span><span class="o">.</span><span class="n">num2date</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="n">time_units</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+    <span class="n">dates</span> <span class="o">=</span> <span class="n">time</span>  <span class="c1"># fallback kalau tidak ada units</span>
 
-<span class="n">dates</span> <span class="o">=</span> <span class="n">netCDF4</span><span class="o">.</span><span class="n">num2date</span><span class="p">(</span>
-    <span class="n">time</span><span class="p">,</span>
-    <span class="n">units</span><span class="o">=</span><span class="n">time_units</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-</section>
-<section id="mengatasi-missing-value">
-<h3>5.2 Mengatasi Missing Value<a class="headerlink" href="#mengatasi-missing-value" title="Link to this heading">#</a></h3>
-<p>Metode yang digunakan adalah Interpolasi Linear.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">series</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span>
-    <span class="n">method</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">,</span>
-    <span class="n">limit_direction</span><span class="o">=</span><span class="s1">&#39;both&#39;</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-</section>
-<section id="membentuk-data-time-series-harian">
-<h3>5.3 Membentuk Data Time Series Harian<a class="headerlink" href="#membentuk-data-time-series-harian" title="Link to this heading">#</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">no2_filled</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-</pre></div>
-</div>
-</section>
-<section id="menyimpan-data-ke-csv">
-<h3>5.4 Menyimpan Data ke CSV<a class="headerlink" href="#menyimpan-data-ke-csv" title="Link to this heading">#</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span>
-    <span class="s2">&quot;NO2_Sumenep.csv&quot;</span><span class="p">,</span>
-    <span class="n">index</span><span class="o">=</span><span class="kc">False</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-</section>
-<section id="pengecekan-missing-date">
-<h3>5.5 Pengecekan Missing Date<a class="headerlink" href="#pengecekan-missing-date" title="Link to this heading">#</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">missing_dates</span> <span class="o">=</span> <span class="n">full_range</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span>
-    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-</section>
-<section id="interpolasi-missing-date">
-<h3>5.6 Interpolasi Missing Date<a class="headerlink" href="#interpolasi-missing-date" title="Link to this heading">#</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;NO2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;NO2&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span>
-    <span class="n">method</span><span class="o">=</span><span class="s1">&#39;time&#39;</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-</section>
-</section>
-<section id="deteksi-outlier">
-<h2>6. Deteksi Outlier<a class="headerlink" href="#deteksi-outlier" title="Link to this heading">#</a></h2>
-<section id="metode-iqr">
-<h3>6.1 Metode IQR<a class="headerlink" href="#metode-iqr" title="Link to this heading">#</a></h3>
-<p>Rumus IQR:</p>
-<p>Q1 = Kuartil 1
-Q3 = Kuartil 3
-IQR = Q3 − Q1</p>
-<p>Batas bawah:</p>
-<p>Lower Bound = Q1 − 1.5 × IQR</p>
-<p>Batas atas:</p>
-<p>Upper Bound = Q3 + 1.5 × IQR</p>
-</section>
-<section id="menghapus-outlier">
-<h3>6.2 Menghapus Outlier<a class="headerlink" href="#menghapus-outlier" title="Link to this heading">#</a></h3>
-<p>Outlier diubah menjadi NaN kemudian diisi kembali menggunakan interpolasi linear.</p>
-</section>
-</section>
-<section id="normalisasi-data">
-<h2>7. Normalisasi Data<a class="headerlink" href="#normalisasi-data" title="Link to this heading">#</a></h2>
-<p>Karena model yang digunakan adalah KNN Regression, maka dilakukan normalisasi menggunakan Min-Max Scaler.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">MinMaxScaler</span>
+<span class="c1"># Tampilkan struktur data NO2</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">no2</span><span class="p">))</span>
+<span class="c1"># type &lt;class &#39;numpy.ma.core.MaskedArray&#39;&gt;</span>
 
-<span class="n">scaler</span> <span class="o">=</span> <span class="n">MinMaxScaler</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">no2</span><span class="p">))</span>
+<span class="c1"># banyaknya data record NO2 725</span>
 
-<span class="n">df</span><span class="p">[</span><span class="s1">&#39;NO2_scaled&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span>
-    <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;NO2_clean&#39;</span><span class="p">]]</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">no2</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="c1"># panjang data perbaris 9</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">no2</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]))</span>
+<span class="c1"># panjang perdata 8</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">no2</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+<span class="c1"># 3.7701793e-05</span>
+</pre></div>
+</div>
+<p>Dari code diatas kita mengetahui bentuk data dari kolom NO2 nya.</p>
+<p>Untuk melihat 10 data pertama adalah:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Contoh data pertama:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">no2</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Data NO₂ yang diperoleh dalam satu hari terdiri dari beberapa nilai pengukuran. Oleh karena itu, dilakukan perhitungan rata-rata sehingga setiap hari hanya memiliki satu nilai data. Meskipun demikian, masih terdapat beberapa data yang tidak tersedia (missing value), sebagaimana terlihat pada output berikut:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[1.6708310795365833e-05 -- -- -- -1.5141125004447531e-05 -- -- --
+1.2840599083574489e-05 -- 2.1466044927365147e-05 9.259913895220961e-06
+2.5322374312963802e-06 1.3587216926680412e-05 1.7222517101345147e-07
+4.851592620980227e-06 1.5277844795491546e-05 -2.810011665133061e-06]
+</pre></div>
+</div>
+<section id="penyelesaian-missing-value-menggunakan-interpolasi-linear">
+<h3>1. Penyelesaian Missing Value Menggunakan Interpolasi Linear<a class="headerlink" href="#penyelesaian-missing-value-menggunakan-interpolasi-linear" title="Link to this heading">#</a></h3>
+<p>Pada tahap ini, dilakukan proses penanganan missing value yang terdapat pada data NO₂. Langkah ini penting untuk memastikan kualitas data sebelum digunakan dalam proses pemodelan dan analisis.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="c1"># Interpolasi Linear</span>
+<span class="n">no2_filled</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">no2</span><span class="p">)</span>
+<span class="c1"># Untuk jaga-jaga jika terdapat &#39;--&#39; tidak berubah menjadi 0</span>
+<span class="n">no2_filled</span> <span class="o">=</span> <span class="n">no2_filled</span><span class="o">.</span><span class="n">filled</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># loop tiap grid (y,x)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">no2</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>     <span class="c1"># 9 baris</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">no2</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]):</span> <span class="c1"># 8 kolom</span>
+        <span class="n">series</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">no2</span><span class="p">[:,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">])</span>
+        <span class="n">no2_filled</span><span class="p">[:,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">series</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="n">limit_direction</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Dengan menggunakan kode di atas, nilai yang hilang (missing value) pada data NO₂ dapat ditangani secara otomatis melalui metode interpolasi linear.</p>
+</section>
+<section id="menghitung-rata-rata-data-dan-mengubah-format-datetime">
+<h3>2. Menghitung Rata-rata Data dan Mengubah Format Datetime<a class="headerlink" href="#menghitung-rata-rata-data-dan-mengubah-format-datetime" title="Link to this heading">#</a></h3>
+<p>Setelah nilai yang hilang berhasil ditangani, data NO₂ dirata-ratakan agar setiap record hanya memiliki satu nilai pengamatan. Selanjutnya, data tanggal diambil dan disimpan ke dalam array. Format datetime juga disederhanakan dari 2023-10-04 00:00:00 menjadi 2023-10-04 karena analisis yang dilakukan berfokus pada data harian, sehingga informasi waktu tidak digunakan.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">new_dates</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">new_no2</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dates</span><span class="p">)):</span>
+    <span class="c1"># ubah format datetime</span>
+    <span class="n">new_date</span> <span class="o">=</span> <span class="n">dates</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">new_dates</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_date</span><span class="p">)</span>
+    <span class="n">new_no2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">no2_filled</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+</pre></div>
+</div>
+</section>
+<section id="simpan-data-dalam-bentuk-file-csv">
+<h3>3. Simpan data dalam bentuk File CSV<a class="headerlink" href="#simpan-data-dalam-bentuk-file-csv" title="Link to this heading">#</a></h3>
+<p>Setelah itu kita akan membentuk data menjadi DataFrame Pandas untuk disimpan menjadi CSV.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s2">&quot;date&quot;</span><span class="p">:</span> <span class="n">dates</span><span class="p">,</span>
+    <span class="s2">&quot;NO2&quot;</span><span class="p">:</span> <span class="n">new_no2</span>
+<span class="p">})</span>
+
+<span class="c1"># Simpan ke CSV</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;NO2_Sumenep_timeseries.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="pengecekan-kelengkapan-data-time-series-harian-pada-csv">
+<h3>4. Pengecekan Kelengkapan Data Time Series Harian pada CSV<a class="headerlink" href="#pengecekan-kelengkapan-data-time-series-harian-pada-csv" title="Link to this heading">#</a></h3>
+<p>Setelah data NO₂ berhasil disimpan ke dalam file CSV, dilakukan pemeriksaan terhadap kelengkapan data time series harian. Kode yang digunakan untuk melakukan pengecekan ditunjukkan di bawah ini:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;NO2_Sumenep_timeseries.csv&quot;</span><span class="p">)</span>
+
+<span class="c1"># Pastikan kolom &#39;date&#39; bertipe datetime</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">])</span>
+
+<span class="c1"># Buat rentang tanggal lengkap</span>
+<span class="n">start_date</span> <span class="o">=</span> <span class="s2">&quot;2023-10-01&quot;</span>
+<span class="n">end_date</span> <span class="o">=</span> <span class="s2">&quot;2025-09-30&quot;</span>
+<span class="n">full_range</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">end_date</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;D&#39;</span><span class="p">)</span>
+
+<span class="c1"># Cek tanggal yang hilang</span>
+<span class="n">missing_dates</span> <span class="o">=</span> <span class="n">full_range</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Jumlah hari missing: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">missing_dates</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Daftar tanggal missing:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">missing_dates</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Jumlah</span> <span class="n">hari</span> <span class="n">missing</span><span class="p">:</span> <span class="mi">6</span>
+<span class="n">Daftar</span> <span class="n">tanggal</span> <span class="n">missing</span><span class="p">:</span>
+<span class="n">DatetimeIndex</span><span class="p">([</span><span class="s1">&#39;2023-11-11&#39;</span><span class="p">,</span> <span class="s1">&#39;2024-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;2024-03-11&#39;</span><span class="p">,</span> <span class="s1">&#39;2024-03-23&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;2024-08-12&#39;</span><span class="p">,</span> <span class="s1">&#39;2025-01-31&#39;</span><span class="p">],</span>
+              <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;datetime64[ns]&#39;</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Pada dataset yang digunakan, masih ditemukan 6 hari yang tidak memiliki data (missing value). Kode yang digunakan untuk memperbaiki data tersebut ditunjukkan di bawah ini.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="c1"># Pastikan datetime dan sorting</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">])</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;date&#39;</span><span class="p">)</span>
+
+<span class="c1"># Buat rentang tanggal lengkap</span>
+<span class="n">full_range</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s2">&quot;2023-10-01&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;2025-09-30&quot;</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;D&#39;</span><span class="p">)</span>
+
+<span class="c1"># Reindex agar tanggal yang hilang muncul sebagai NaN</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;date&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">full_range</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;date&#39;</span>
+
+<span class="c1"># Interpolasi linear berdasarkan indeks waktu</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;NO2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;NO2&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+
+<span class="c1"># (Opsional) jika masih ada NaN di bagian awal/akhir bisa gunakan forward/backward fill</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;NO2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;NO2&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;bfill&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;ffill&#39;</span><span class="p">)</span>
+
+<span class="c1"># Simpan kembali ke CSV</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;no2_timeseries_interpolated.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Setelah dilakukan pengecekan kembali terhadap data harian, tidak ditemukan lagi nilai yang hilang (missing value) pada dataset.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Jumlah</span> <span class="n">hari</span> <span class="n">missing</span><span class="p">:</span> <span class="mi">0</span>
+<span class="n">Daftar</span> <span class="n">tanggal</span> <span class="n">missing</span><span class="p">:</span>
+<span class="n">DatetimeIndex</span><span class="p">([],</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;datetime64[ns]&#39;</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;D&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="deteksi-outlier-iqr">
+<h3>5. Deteksi Outlier IQR<a class="headerlink" href="#deteksi-outlier-iqr" title="Link to this heading">#</a></h3>
+<p>Setelah proses pengisian missing value menggunakan metode interpolasi linear selesai dilakukan, tahap berikutnya adalah mendeteksi outlier pada data menggunakan metode Interquartile Range (IQR).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;no2_timeseries_interpolated.csv&quot;</span><span class="p">)</span>
+
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">])</span>
+
+<span class="c1"># Hitung IQR</span>
+<span class="n">Q1</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;NO2&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.25</span><span class="p">)</span>
+<span class="n">Q3</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;NO2&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.75</span><span class="p">)</span>
+<span class="n">IQR</span> <span class="o">=</span> <span class="n">Q3</span> <span class="o">-</span> <span class="n">Q1</span>
+
+<span class="n">lower_bound</span> <span class="o">=</span> <span class="n">Q1</span> <span class="o">-</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">IQR</span>
+<span class="n">upper_bound</span> <span class="o">=</span> <span class="n">Q3</span> <span class="o">+</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">IQR</span>
+
+<span class="c1"># Filter outlier</span>
+<span class="n">outliers_iqr</span> <span class="o">=</span> <span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;NO2&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">lower_bound</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;NO2&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">upper_bound</span><span class="p">)]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Jumlah Outlier (IQR):&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">outliers_iqr</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">outliers_iqr</span><span class="p">[[</span><span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="s1">&#39;NO2&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>Output/terminal:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Jumlah</span> <span class="n">Outlier</span> <span class="p">(</span><span class="n">IQR</span><span class="p">):</span> <span class="mi">7</span>
+          <span class="n">date</span>       <span class="n">NO2</span>
+<span class="mi">74</span>  <span class="mi">2023</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">14</span>  <span class="mf">0.000025</span>
+<span class="mi">75</span>  <span class="mi">2023</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">15</span>  <span class="mf">0.000027</span>
+<span class="mi">77</span>  <span class="mi">2023</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">17</span>  <span class="mf">0.000027</span>
+<span class="mi">78</span>  <span class="mi">2023</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">18</span>  <span class="mf">0.000026</span>
+<span class="mi">103</span> <span class="mi">2024</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">12</span>  <span class="mf">0.000031</span>
+</pre></div>
+</div>
+<p>Untuk men-visualisasi outlier:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># === Visualisasi ===</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;NO2&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;NO2&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Titik Outlier</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">outliers_iqr</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">],</span> <span class="n">outliers_iqr</span><span class="p">[</span><span class="s1">&#39;NO2&#39;</span><span class="p">],</span> 
+            <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Outliers&quot;</span><span class="p">)</span>
+
+<span class="c1"># Garis batas atas &amp; bawah</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">upper_bound</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Upper Bound (IQR)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">lower_bound</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Lower Bound (IQR)&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Deteksi Outlier Data NO2 (Metode IQR)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Tanggal&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Kadar NO2&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span>
+    <span class="n">ticks</span><span class="o">=</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]],</span>
+    <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">),</span>
+            <span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)]</span>
 <span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-</section>
-<section id="transformasi-time-series-menjadi-supervised-learning">
-<h2>8. Transformasi Time Series Menjadi Supervised Learning<a class="headerlink" href="#transformasi-time-series-menjadi-supervised-learning" title="Link to this heading">#</a></h2>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Lag 4
-NO2(t-4), NO2(t-3), NO2(t-2), NO2(t-1) → NO2(t)
-Lag 10
-NO2(t-10) ... NO2(t-1) → NO2(t)
-Lag 30
-NO2(t-30) ... NO2(t-1) → NO2(t)
+<p><img alt="original image" src="https://cdn.mathpix.com/snip/images/AyA0fbNIhaI36uD14hD19Dw_Gl1oQAd-QghyBVB8nqE.original.fullsize.png" /></p>
+<p>Tahap selanjutnya adalah menghilangkan data yang terdeteksi sebagai outlier. Mengingat dataset berbentuk time series, nilai yang dihapus akan digantikan dengan hasil interpolasi linear sehingga tidak menimbulkan kekosongan data pada rentang waktu pengamatan.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Tandai outlier menjadi NaN</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;NO2_cleaned&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;NO2&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mask</span><span class="p">((</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;NO2&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">lower_bound</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;NO2&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">upper_bound</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Jumlah nilai yang dinyatakan sebagai outlier:&quot;</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;NO2_cleaned&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+
+<span class="c1"># Interpolasi linear untuk mengisi kembali nilai outlier</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;NO2_filled&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;NO2_cleaned&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">)</span>
+
+<span class="c1"># Jika masih tersisa NaN di ujung data, isi dengan forward/backward fill</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;NO2_filled&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;NO2_filled&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">bfill</span><span class="p">()</span><span class="o">.</span><span class="n">ffill</span><span class="p">()</span>
+<span class="c1"># df[&#39;NO2_filled&#39;] = df[&#39;NO2_filled&#39;].fillna(method=&#39;bfill&#39;).fillna(method=&#39;ffill&#39;)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Jumlah missing setelah interpolasi:&quot;</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;NO2_filled&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
 </pre></div>
 </div>
-</section>
-<section id="knn-regression">
-<h2>9. KNN Regression<a class="headerlink" href="#knn-regression" title="Link to this heading">#</a></h2>
-<p>Pembagian Data
-Training : 80%
-Testing : 20%
-Model</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">KNeighborsRegressor</span><span class="p">(</span>
-    <span class="n">n_neighbors</span><span class="o">=</span><span class="mi">5</span>
+<p>Visualisasi data setelah menghapus Outlier dan mengisi kembali menggunakan Interpolasi Linear:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="c1"># Plot data hasil interpolasi</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;NO2_filled&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;NO2 (Interpolated)&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1"># Tampilkan hanya tanggal awal dan akhir di sumbu X</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span>
+    <span class="n">ticks</span><span class="o">=</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]],</span>
+    <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">),</span>
+            <span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)]</span>
 <span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Plot Data NO2 Setelah Outlier Removal &amp; Interpolasi&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Tanggal&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Kadar NO2&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+<p><img alt="original image" src="https://cdn.mathpix.com/snip/images/dtYVI3WsvrTMAqFy1oGiQlt9K3zHMYKarqUPO1eV32c.original.fullsize.png" /></p>
 </section>
-<section id="evaluasi-model">
-<h2>10. Evaluasi Model<a class="headerlink" href="#evaluasi-model" title="Link to this heading">#</a></h2>
-<p>Parameter evaluasi yang digunakan:</p>
-<p>RMSE</p>
-<p>Root Mean Squared Error digunakan untuk mengukur rata-rata kesalahan prediksi.</p>
-<p>R² Score</p>
-<p>Menunjukkan kemampuan model dalam menjelaskan variasi data.</p>
-<p>MAPE</p>
-<p>Mean Absolute Percentage Error digunakan untuk mengukur tingkat kesalahan dalam bentuk persentase.</p>
 </section>
-<section id="visualisasi">
-<h2>11. Visualisasi<a class="headerlink" href="#visualisasi" title="Link to this heading">#</a></h2>
-<p>Visualisasi yang dibuat:</p>
-<p>Grafik Deteksi Outlier
-Grafik Aktual vs Prediksi Lag 4
-Grafik Aktual vs Prediksi Lag 10
-Grafik Aktual vs Prediksi Lag 30</p>
+<section id="c-modelling-menggunakan-metode-knn-regression">
+<h2>C. Modelling menggunakan metode KNN Regression<a class="headerlink" href="#c-modelling-menggunakan-metode-knn-regression" title="Link to this heading">#</a></h2>
+<p>Pada tahap ini, data time series harian kadar NO₂ di Kabupaten Sumenep digunakan untuk memprediksi kadar NO₂ pada hari berikutnya. Data akan diubah terlebih dahulu sehingga nilai NO₂ pada beberapa hari sebelumnya dapat digunakan sebagai fitur prediksi. Selanjutnya, akan dianalisis korelasi antara nilai NO₂ saat ini dengan nilai pada hari-hari sebelumnya, serta dibandingkan pengaruh jumlah hari sebelumnya (lag) terhadap kinerja model KNN Regression.</p>
+<section id="uji-korelasi-data">
+<h3>1. Uji Korelasi Data<a class="headerlink" href="#uji-korelasi-data" title="Link to this heading">#</a></h3>
+<p>Sebelum melakukan pemodelan, data time series terlebih dahulu diubah menjadi bentuk supervised learning. Pada tahap ini, nilai NO₂ dari 30 hari sebelumnya (t-30 hingga t-1) digunakan sebagai fitur, sedangkan nilai pada hari ke-t dijadikan sebagai label. Selanjutnya, dilakukan uji korelasi untuk melihat hubungan antara setiap fitur dengan label yang akan diprediksi.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># MODELLING</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">create_supervised</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">n_lag</span><span class="o">=</span><span class="mi">4</span><span class="p">):</span>
+    <span class="n">df_supervised</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+    
+    <span class="c1"># Membuat fitur t-4 sampai t-1</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_lag</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">df_supervised</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;NO2(t-</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    
+    <span class="c1"># Label hari H</span>
+    <span class="n">df_supervised</span><span class="p">[</span><span class="s1">&#39;NO2(t)&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span>
+    
+    <span class="c1"># Hapus baris yang masih mengandung NaN akibat shift</span>
+    <span class="n">df_supervised</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">df_supervised</span>
+
+<span class="c1"># contoh penggunaan</span>
+<span class="n">supervised_df30</span> <span class="o">=</span> <span class="n">create_supervised</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;NO2_filled&#39;</span><span class="p">],</span> <span class="n">n_lag</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+
+<span class="c1"># Ambil semua lag dan kolom target</span>
+<span class="n">lag_cols</span> <span class="o">=</span> <span class="n">supervised_df30</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s2">&quot;NO2(t)&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">columns</span>
+<span class="n">correlations</span> <span class="o">=</span> <span class="n">supervised_df30</span><span class="p">[</span><span class="n">lag_cols</span><span class="p">]</span><span class="o">.</span><span class="n">corrwith</span><span class="p">(</span><span class="n">supervised_df30</span><span class="p">[</span><span class="s1">&#39;NO2(t)&#39;</span><span class="p">])</span>
+
+<span class="c1"># Tampilkan nilai korelasi</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">correlations</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Output/Terminal:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">NO2</span><span class="p">(</span><span class="n">t</span><span class="o">-</span><span class="mi">30</span><span class="p">)</span>    <span class="mf">0.370712</span>
+<span class="n">NO2</span><span class="p">(</span><span class="n">t</span><span class="o">-</span><span class="mi">29</span><span class="p">)</span>    <span class="mf">0.366606</span>
+<span class="n">NO2</span><span class="p">(</span><span class="n">t</span><span class="o">-</span><span class="mi">28</span><span class="p">)</span>    <span class="mf">0.344649</span>
+<span class="n">NO2</span><span class="p">(</span><span class="n">t</span><span class="o">-</span><span class="mi">27</span><span class="p">)</span>    <span class="mf">0.348135</span>
+<span class="n">NO2</span><span class="p">(</span><span class="n">t</span><span class="o">-</span><span class="mi">26</span><span class="p">)</span>    <span class="mf">0.304259</span>
+<span class="n">NO2</span><span class="p">(</span><span class="n">t</span><span class="o">-</span><span class="mi">25</span><span class="p">)</span>    <span class="mf">0.325997</span>
+<span class="n">NO2</span><span class="p">(</span><span class="n">t</span><span class="o">-</span><span class="mi">24</span><span class="p">)</span>    <span class="mf">0.317188</span>
+<span class="n">NO2</span><span class="p">(</span><span class="n">t</span><span class="o">-</span><span class="mi">23</span><span class="p">)</span>    <span class="mf">0.314006</span>
+<span class="n">NO2</span><span class="p">(</span><span class="n">t</span><span class="o">-</span><span class="mi">22</span><span class="p">)</span>    <span class="mf">0.295512</span>
+<span class="n">NO2</span><span class="p">(</span><span class="n">t</span><span class="o">-</span><span class="mi">21</span><span class="p">)</span>    <span class="mf">0.314576</span>
+<span class="n">NO2</span><span class="p">(</span><span class="n">t</span><span class="o">-</span><span class="mi">20</span><span class="p">)</span>    <span class="mf">0.322678</span>
+<span class="n">NO2</span><span class="p">(</span><span class="n">t</span><span class="o">-</span><span class="mi">19</span><span class="p">)</span>    <span class="mf">0.315124</span>
+<span class="n">NO2</span><span class="p">(</span><span class="n">t</span><span class="o">-</span><span class="mi">18</span><span class="p">)</span>    <span class="mf">0.330163</span>
+<span class="n">NO2</span><span class="p">(</span><span class="n">t</span><span class="o">-</span><span class="mi">17</span><span class="p">)</span>    <span class="mf">0.330909</span>
+<span class="n">NO2</span><span class="p">(</span><span class="n">t</span><span class="o">-</span><span class="mi">16</span><span class="p">)</span>    <span class="mf">0.362243</span>
+<span class="n">NO2</span><span class="p">(</span><span class="n">t</span><span class="o">-</span><span class="mi">15</span><span class="p">)</span>    <span class="mf">0.316075</span>
+<span class="n">NO2</span><span class="p">(</span><span class="n">t</span><span class="o">-</span><span class="mi">14</span><span class="p">)</span>    <span class="mf">0.326677</span>
+<span class="n">NO2</span><span class="p">(</span><span class="n">t</span><span class="o">-</span><span class="mi">13</span><span class="p">)</span>    <span class="mf">0.355730</span>
+<span class="n">NO2</span><span class="p">(</span><span class="n">t</span><span class="o">-</span><span class="mi">12</span><span class="p">)</span>    <span class="mf">0.389623</span>
+<span class="n">NO2</span><span class="p">(</span><span class="n">t</span><span class="o">-</span><span class="mi">11</span><span class="p">)</span>    <span class="mf">0.426148</span>
+<span class="n">NO2</span><span class="p">(</span><span class="n">t</span><span class="o">-</span><span class="mi">10</span><span class="p">)</span>    <span class="mf">0.426888</span>
+<span class="n">NO2</span><span class="p">(</span><span class="n">t</span><span class="o">-</span><span class="mi">9</span><span class="p">)</span>     <span class="mf">0.458736</span>
+<span class="n">NO2</span><span class="p">(</span><span class="n">t</span><span class="o">-</span><span class="mi">8</span><span class="p">)</span>     <span class="mf">0.460564</span>
+<span class="n">NO2</span><span class="p">(</span><span class="n">t</span><span class="o">-</span><span class="mi">7</span><span class="p">)</span>     <span class="mf">0.465242</span>
+<span class="n">NO2</span><span class="p">(</span><span class="n">t</span><span class="o">-</span><span class="mi">6</span><span class="p">)</span>     <span class="mf">0.456107</span>
+<span class="n">NO2</span><span class="p">(</span><span class="n">t</span><span class="o">-</span><span class="mi">5</span><span class="p">)</span>     <span class="mf">0.507097</span>
+<span class="n">NO2</span><span class="p">(</span><span class="n">t</span><span class="o">-</span><span class="mi">4</span><span class="p">)</span>     <span class="mf">0.535467</span>
+<span class="n">NO2</span><span class="p">(</span><span class="n">t</span><span class="o">-</span><span class="mi">3</span><span class="p">)</span>     <span class="mf">0.612302</span>
+<span class="n">NO2</span><span class="p">(</span><span class="n">t</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>     <span class="mf">0.682434</span>
+<span class="n">NO2</span><span class="p">(</span><span class="n">t</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>     <span class="mf">0.778969</span>
+<span class="n">dtype</span><span class="p">:</span> <span class="n">float64</span>
+</pre></div>
+</div>
+<p>Nilai uji korelasi berkisar antara -1 hingga 1. Fitur yang memiliki nilai korelasi di atas 0,5 dianggap memiliki hubungan yang cukup kuat dengan target. Oleh karena itu, dipilih fitur t-1 hingga t-5 untuk digunakan dalam pemodelan.</p>
 </section>
-<section id="hasil-dan-pembahasan">
-<h2>12. Hasil dan Pembahasan<a class="headerlink" href="#hasil-dan-pembahasan" title="Link to this heading">#</a></h2>
-<p>Berdasarkan hasil evaluasi model KNN Regression, dilakukan perbandingan performa antara penggunaan lag 4, lag 10, dan lag 30.</p>
-<p>Model terbaik dipilih berdasarkan:</p>
-<p>RMSE paling kecil
-R² paling besar
-MAPE paling kecil</p>
-<p>Hasil tersebut digunakan untuk menentukan model yang paling sesuai dalam melakukan peramalan kadar NO₂ harian di Kabupaten Sumenep Madura.</p>
-</section>
-<section id="kesimpulan">
-<h2>13. Kesimpulan<a class="headerlink" href="#kesimpulan" title="Link to this heading">#</a></h2>
-<p>Penelitian ini berhasil melakukan pengambilan data NO₂ harian menggunakan Sentinel-5P melalui Copernicus Data Space Ecosystem. Data kemudian diproses melalui tahap preprocessing, deteksi outlier, normalisasi, dan transformasi menjadi supervised learning.</p>
-<p>Model KNN Regression digunakan untuk melakukan peramalan kadar NO₂ harian dengan beberapa variasi lag. Evaluasi dilakukan menggunakan RMSE, R² Score, dan MAPE sehingga dapat diketahui konfigurasi model yang memberikan performa terbaik.</p>
-</section>
-<section id="daftar-pustaka">
-<h2>14. Daftar Pustaka<a class="headerlink" href="#daftar-pustaka" title="Link to this heading">#</a></h2>
-<p>Copernicus Data Space Ecosystem. (2025). Sentinel-5P Atmospheric Monitoring Data.</p>
-<p>European Space Agency. Sentinel-5P Mission Overview.</p>
-<p>Pedregosa, F., et al. (2011). Scikit-learn: Machine Learning in Python. Journal of Machine Learning Research.</p>
-<p>Pandas Development Team. (2025). Pandas Documentation.</p>
-<p>NumPy Developers. (2025). NumPy Documentation.</p>
 </section>
 </section>
 
@@ -793,47 +897,20 @@ MAPE paling kecil</p>
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pendahuluan">1. Pendahuluan</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#latar-belakang">1.1 Latar Belakang</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#latar-belakang">Latar Belakang</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-pengumpulan-data">A. Pengumpulan Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b-preproccessing-data">B. Preproccessing Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penyelesaian-missing-value-menggunakan-interpolasi-linear">1. Penyelesaian Missing Value Menggunakan Interpolasi Linear</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-rata-rata-data-dan-mengubah-format-datetime">2. Menghitung Rata-rata Data dan Mengubah Format Datetime</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simpan-data-dalam-bentuk-file-csv">3. Simpan data dalam bentuk File CSV</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pengecekan-kelengkapan-data-time-series-harian-pada-csv">4. Pengecekan Kelengkapan Data Time Series Harian pada CSV</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deteksi-outlier-iqr">5. Deteksi Outlier IQR</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-penelitian">2. Tujuan Penelitian</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengumpulan-data">3. Pengumpulan Data</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sumber-data">3.1 Sumber Data</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#area-of-interest-aoi">3.2 Area of Interest (AOI)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spatial-extent">3.3 Spatial Extent</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rentang-waktu">3.4 Rentang Waktu</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#c-modelling-menggunakan-metode-knn-regression">C. Modelling menggunakan metode KNN Regression</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uji-korelasi-data">1. Uji Korelasi Data</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengambilan-data-menggunakan-openeo">4. Pengambilan Data Menggunakan OpenEO</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#koneksi-ke-openeo">4.1 Koneksi ke OpenEO</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-dataset-sentinel-5p">4.2 Load Dataset Sentinel-5P</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#agregasi-temporal-harian">4.3 Agregasi Temporal Harian</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menjalankan-job">4.5 Menjalankan Job</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing-data">5. Preprocessing Data</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#membaca-file-netcdf">5.1 Membaca File NetCDF</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mengatasi-missing-value">5.2 Mengatasi Missing Value</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#membentuk-data-time-series-harian">5.3 Membentuk Data Time Series Harian</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menyimpan-data-ke-csv">5.4 Menyimpan Data ke CSV</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pengecekan-missing-date">5.5 Pengecekan Missing Date</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpolasi-missing-date">5.6 Interpolasi Missing Date</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deteksi-outlier">6. Deteksi Outlier</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metode-iqr">6.1 Metode IQR</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menghapus-outlier">6.2 Menghapus Outlier</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#normalisasi-data">7. Normalisasi Data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformasi-time-series-menjadi-supervised-learning">8. Transformasi Time Series Menjadi Supervised Learning</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#knn-regression">9. KNN Regression</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluasi-model">10. Evaluasi Model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi">11. Visualisasi</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-dan-pembahasan">12. Hasil dan Pembahasan</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">13. Kesimpulan</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#daftar-pustaka">14. Daftar Pustaka</a></li>
 </ul>
   </nav></div>
 
