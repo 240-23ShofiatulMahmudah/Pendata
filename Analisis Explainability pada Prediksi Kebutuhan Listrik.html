@@ -1,0 +1,944 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Analisis Explainability pada Prediksi Kebutuhan Listrik &#8212; Penambangan Data - ShofiatulMahmudah</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Analisis Explainability pada Prediksi Kebutuhan Listrik';</script>
+    <script src="_static/custom.js?v=80a3739c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Prediksi Kadar \(NO_2\) di daerah Sumenep Madura" href="Peramalan%20kadar%20%20NO2%20di%20daerah%20Sumenep%20Madura.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Penambangan Data - ShofiatulMahmudah - Home"/>
+    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt="Penambangan Data - ShofiatulMahmudah - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Penambangan Data - Portfolio Materi
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Business_Understanding.html">Business_Understanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Data_Understanding.html">Data_Understanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Data_Preparation.html">Data_Understanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Macam-Macam_Normalisasi_Data_Preprocessing.html">Macam-Macam_Normalisasi_Data_Preprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sofi.html">DATA PREPARATION — PERTEMUAN 3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tugas_Perhitungan_WKNN.html">Tugas_Perhitungan_WKNN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UTS%20Analisis%20Data%20Kesuburan%20Tanah.html">Analisa Data Kesuburan Tanah</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Klasifikasi%20Naive%20Bayes%20Menggunakan%20KNIME.html">Klasifikasi Naive Bayes Menggunakan KNIME</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Klasifikasi%20Decision%20Tree.html">Klasifikasi Decision Tree</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LINEAR%20REGRESSION.html">TUGAS LINEAR REGRESSION</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="Peramalan%20kadar%20%20NO2%20di%20daerah%20Sumenep%20Madura.html">Prediksi Kadar <span class="math notranslate nohighlight">\(NO_2\)</span> di daerah Sumenep Madura</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Analisis Explainability pada Prediksi Kebutuhan Listrik</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FAnalisis Explainability pada Prediksi Kebutuhan Listrik.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Analisis Explainability pada Prediksi Kebutuhan Listrik.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Analisis Explainability pada Prediksi Kebutuhan Listrik</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisa-prediksi-tentang-apa">1. Analisa prediksi tentang apa?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bagaimana-bentuk-data-trainingnya">2. Bagaimana bentuk data trainingnya?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#input-x">Input (X)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#output-y">Output (y)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#apa-itu-lag">3. Apa itu Lag?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jelaskan-proses-analisis-yang-dilakukan">4. Jelaskan proses analisis yang dilakukan</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tahap-1-mengambil-dataset">Tahap 1 – Mengambil Dataset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tahap-2-resampling-data">Tahap 2 – Resampling Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tahap-3-split-data">Tahap 3 – Split Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tahap-4-membuat-model-forecasting">Tahap 4 – Membuat Model Forecasting</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tahap-5-training-model">Tahap 5 – Training Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tahap-6-feature-importance">Tahap 6 – Feature Importance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tahap-7-shap-analysis">Tahap 7 – SHAP Analysis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tahap-8-shap-summary-plot">Tahap 8 – SHAP Summary Plot</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tahap-9-shap-force-plot">Tahap 9 – SHAP Force Plot</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tahap-10-prediksi-masa-depan">Tahap 10 – Prediksi Masa Depan</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">Kesimpulan</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="analisis-explainability-pada-prediksi-kebutuhan-listrik">
+<h1>Analisis Explainability pada Prediksi Kebutuhan Listrik<a class="headerlink" href="#analisis-explainability-pada-prediksi-kebutuhan-listrik" title="Link to this heading">#</a></h1>
+<section id="analisa-prediksi-tentang-apa">
+<h2>1. Analisa prediksi tentang apa?<a class="headerlink" href="#analisa-prediksi-tentang-apa" title="Link to this heading">#</a></h2>
+<p>Kasus pada notebook tersebut digunakan untuk memprediksi kebutuhan listrik (electricity demand) di wilayah Victoria, Australia.</p>
+<p>Dataset yang digunakan adalah vic_electricity yang berisi:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Variabel</p></th>
+<th class="head"><p>Keterangan</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Time</p></td>
+<td><p>Waktu pencatatan</p></td>
+</tr>
+<tr class="row-odd"><td><p>Date</p></td>
+<td><p>Tanggal</p></td>
+</tr>
+<tr class="row-even"><td><p>Demand</p></td>
+<td><p>Permintaan listrik (MW)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Temperature</p></td>
+<td><p>Suhu udara</p></td>
+</tr>
+<tr class="row-even"><td><p>Holiday</p></td>
+<td><p>Hari libur atau bukan</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Pada contoh tersebut, data diubah menjadi frekuensi harian (daily) dan model digunakan untuk:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Memprediksi Demand (kebutuhan listrik) beberapa hari ke depan berdasarkan data kebutuhan listrik sebelumnya dan suhu udara.
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="bagaimana-bentuk-data-trainingnya">
+<h2>2. Bagaimana bentuk data trainingnya?<a class="headerlink" href="#bagaimana-bentuk-data-trainingnya" title="Link to this heading">#</a></h2>
+<section id="input-x">
+<h3>Input (X)<a class="headerlink" href="#input-x" title="Link to this heading">#</a></h3>
+<p><strong>a. Lag Demand</strong>
+Nilai demand pada hari-hari sebelumnya:</p>
+<ul class="simple">
+<li><p>lag_1 = demand 1 hari sebelumnya</p></li>
+<li><p>lag_2 = demand 2 hari sebelumnya</p></li>
+<li><p>lag_3 = demand 3 hari sebelumnya</p></li>
+<li><p>lag_4 = demand 4 hari sebelumnya</p></li>
+<li><p>lag_5 = demand 5 hari sebelumnya</p></li>
+<li><p>lag_6 = demand 6 hari sebelumnya</p></li>
+<li><p>lag_7 = demand 7 hari sebelumnya</p></li>
+</ul>
+<p><strong>b. Variabel eksternal (Exogenous Variable)</strong></p>
+<ul class="simple">
+<li><p>Temperature</p></li>
+</ul>
+<p>Sehingga bentuk X_train adalah:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>lag_1</p></th>
+<th class="head"><p>lag_2</p></th>
+<th class="head"><p>lag_3</p></th>
+<th class="head"><p>lag_4</p></th>
+<th class="head"><p>lag_5</p></th>
+<th class="head"><p>lag_6</p></th>
+<th class="head"><p>lag_7</p></th>
+<th class="head"><p>Temperature</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>205338</p></td>
+<td><p>211066</p></td>
+<td><p>213792</p></td>
+<td><p>258955</p></td>
+<td><p>275490</p></td>
+<td><p>227778</p></td>
+<td><p>82531</p></td>
+<td><p>24.09</p></td>
+</tr>
+<tr class="row-odd"><td><p>200693</p></td>
+<td><p>205338</p></td>
+<td><p>211066</p></td>
+<td><p>213792</p></td>
+<td><p>258955</p></td>
+<td><p>275490</p></td>
+<td><p>227778</p></td>
+<td><p>20.22</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<hr class="docutils" />
+<section id="output-y">
+<h3>Output (y)<a class="headerlink" href="#output-y" title="Link to this heading">#</a></h3>
+<p><strong>Demand hari berikutnya</strong></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Tanggal</p></th>
+<th class="head"><p>y</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>2012-01-07</p></td>
+<td><p>200693</p></td>
+</tr>
+<tr class="row-odd"><td><p>2012-01-08</p></td>
+<td><p>200061</p></td>
+</tr>
+<tr class="row-even"><td><p>2012-01-09</p></td>
+<td><p>216201</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Artinya model belajar:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&quot;Jika saya mengetahui demand 7 hari terakhir dan suhu hari ini, berapa demand listrik hari berikutnya?
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="apa-itu-lag">
+<h2>3. Apa itu Lag?<a class="headerlink" href="#apa-itu-lag" title="Link to this heading">#</a></h2>
+<p>Dalam time series, lag adalah nilai masa lalu yang digunakan sebagai fitur (input) untuk memprediksi masa depan.</p>
+<p>Misalkan data demand:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Hari</p></th>
+<th class="head"><p>Demand</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Senin</p></td>
+<td><p>100</p></td>
+</tr>
+<tr class="row-odd"><td><p>Selasa</p></td>
+<td><p>120</p></td>
+</tr>
+<tr class="row-even"><td><p>Rabu</p></td>
+<td><p>130</p></td>
+</tr>
+<tr class="row-odd"><td><p>Kamis</p></td>
+<td><p>?</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Ketika ingin memprediksi Kamis:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Feature</p></th>
+<th class="head"><p>Nilai</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>lag_1</p></td>
+<td><p>130 (Rabu)</p></td>
+</tr>
+<tr class="row-odd"><td><p>lag_2</p></td>
+<td><p>120 (Selasa)</p></td>
+</tr>
+<tr class="row-even"><td><p>lag_3</p></td>
+<td><p>100 (Senin)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Target:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>y</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Demand Kamis</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Secara umum:</p>
+<p>lag_1 = nilai 1 periode sebelumnya
+lag_2 = nilai 2 periode sebelumnya
+lag_n = nilai n periode sebelumnya</p>
+<p>Pada notebook ini digunakan:</p>
+<p><strong>lags = 7</strong>
+yang berarti model melihat data demand selama 7 hari terakhir untuk memprediksi hari berikutnya.</p>
+</section>
+<hr class="docutils" />
+<section id="jelaskan-proses-analisis-yang-dilakukan">
+<h2>4. Jelaskan proses analisis yang dilakukan<a class="headerlink" href="#jelaskan-proses-analisis-yang-dilakukan" title="Link to this heading">#</a></h2>
+<section id="tahap-1-mengambil-dataset">
+<h3>Tahap 1 – Mengambil Dataset<a class="headerlink" href="#tahap-1-mengambil-dataset" title="Link to this heading">#</a></h3>
+<p>Dataset vic_electricity diambil dari package skforecast.</p>
+<p>Berisi:</p>
+<ul class="simple">
+<li><p>Demand listrik</p></li>
+<li><p>Temperatur</p></li>
+<li><p>Waktu pencatatan</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="tahap-2-resampling-data">
+<h3>Tahap 2 – Resampling Data<a class="headerlink" href="#tahap-2-resampling-data" title="Link to this heading">#</a></h3>
+<p>Data awal berupa data per jam.</p>
+<p>Kemudian diubah menjadi data harian:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">&#39;D&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span>
+    <span class="s1">&#39;Demand&#39;</span><span class="p">:</span> <span class="s1">&#39;sum&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Temperature&#39;</span><span class="p">:</span> <span class="s1">&#39;mean&#39;</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<p>Hasilnya:</p>
+<ul class="simple">
+<li><p>Demand harian</p></li>
+<li><p>Suhu rata-rata harian</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="tahap-3-split-data">
+<h3>Tahap 3 – Split Data<a class="headerlink" href="#tahap-3-split-data" title="Link to this heading">#</a></h3>
+<p>Dataset dibagi menjadi:</p>
+<p><strong>Training</strong> -&gt; untuk belajar</p>
+<p>2011–2014</p>
+<p><strong>Testing</strong> -&gt; untuk evaluasi prediksi</p>
+<p>Akhir 2014</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">data_train</span>
+<span class="n">data_test</span>
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="tahap-4-membuat-model-forecasting">
+<h3>Tahap 4 – Membuat Model Forecasting<a class="headerlink" href="#tahap-4-membuat-model-forecasting" title="Link to this heading">#</a></h3>
+<p>Digunakan:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ForecasterRecursive</span>
+</pre></div>
+</div>
+<p>dengan algoritma:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">LGBMRegressor</span>
+</pre></div>
+</div>
+<p>dan:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lags</span> <span class="o">=</span> <span class="mi">7</span>
+</pre></div>
+</div>
+<p>Artinya:</p>
+<p>Model menggunakan:</p>
+<ul class="simple">
+<li><p>demand 7 hari terakhir</p></li>
+<li><p>temperatur</p></li>
+</ul>
+<p>untuk memprediksi demand berikutnya.</p>
+</section>
+<hr class="docutils" />
+<section id="tahap-5-training-model">
+<h3>Tahap 5 – Training Model<a class="headerlink" href="#tahap-5-training-model" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">forecaster</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">data_train</span><span class="p">[</span><span class="s1">&#39;Demand&#39;</span><span class="p">],</span>
+    <span class="n">exog</span><span class="o">=</span><span class="n">data_train</span><span class="p">[</span><span class="s1">&#39;Temperature&#39;</span><span class="p">]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Pada tahap ini model belajar pola:</p>
+<ul class="simple">
+<li><p>konsumsi listrik</p></li>
+<li><p>pengaruh suhu terhadap konsumsi listrik</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="tahap-6-feature-importance">
+<h3>Tahap 6 – Feature Importance<a class="headerlink" href="#tahap-6-feature-importance" title="Link to this heading">#</a></h3>
+<p>Dilakukan analisis fitur yang paling berpengaruh.</p>
+<p>Hasil dokumentasi menunjukkan:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Feature</p></th>
+<th class="head"><p>Importance</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Temperature</p></td>
+<td><p>570</p></td>
+</tr>
+<tr class="row-odd"><td><p>lag_1</p></td>
+<td><p>470</p></td>
+</tr>
+<tr class="row-even"><td><p>lag_3</p></td>
+<td><p>387</p></td>
+</tr>
+<tr class="row-odd"><td><p>lag_2</p></td>
+<td><p>362</p></td>
+</tr>
+<tr class="row-even"><td><p>lag_7</p></td>
+<td><p>325</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Artinya:</p>
+<p>Faktor paling berpengaruh:</p>
+<ol class="arabic simple">
+<li><p>Temperature</p></li>
+<li><p>Demand kemarin (lag_1)</p></li>
+<li><p>Demand beberapa hari sebelumnya</p></li>
+</ol>
+<p>Kesimpulan:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Suhu memiliki pengaruh terbesar terhadap kebutuhan listrik.
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="tahap-7-shap-analysis">
+<h3>Tahap 7 – SHAP Analysis<a class="headerlink" href="#tahap-7-shap-analysis" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">shap</span><span class="o">.</span><span class="n">TreeExplainer</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>untuk mengetahui:</p>
+<ul class="simple">
+<li><p>mengapa model membuat prediksi tertentu</p></li>
+<li><p>fitur mana yang menaikkan atau menurunkan prediksi</p></li>
+</ul>
+<p>SHAP membantu menjawab:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>        &quot;Mengapa demand hari ini diprediksi tinggi?&quot;
+</pre></div>
+</div>
+<p>Misalnya karena:</p>
+<ul class="simple">
+<li><p>suhu tinggi</p></li>
+<li><p>demand minggu lalu tinggi</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="tahap-8-shap-summary-plot">
+<h3>Tahap 8 – SHAP Summary Plot<a class="headerlink" href="#tahap-8-shap-summary-plot" title="Link to this heading">#</a></h3>
+<p>Menampilkan ranking kontribusi fitur.</p>
+<p>Tujuannya:</p>
+<ul class="simple">
+<li><p>mengetahui fitur paling penting</p></li>
+<li><p>mengetahui arah pengaruh fitur</p></li>
+</ul>
+<p>Contoh:</p>
+<ul class="simple">
+<li><p>Temperature tinggi → demand naik</p></li>
+<li><p>Temperature rendah → demand turun</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="tahap-9-shap-force-plot">
+<h3>Tahap 9 – SHAP Force Plot<a class="headerlink" href="#tahap-9-shap-force-plot" title="Link to this heading">#</a></h3>
+<p>Digunakan untuk menjelaskan satu prediksi tertentu.</p>
+<p>Misalnya:</p>
+<p>Prediksi Demand = 240.000 MW</p>
+<p>Kemudian SHAP menunjukkan:</p>
+<ul class="simple">
+<li><p>Temperature menambah +15.000</p></li>
+<li><p>lag_1 menambah +10.000</p></li>
+<li><p>lag_4 mengurangi −5.000</p></li>
+</ul>
+<p>Sehingga dapat diketahui asal-usul prediksi tersebut.</p>
+</section>
+<hr class="docutils" />
+<section id="tahap-10-prediksi-masa-depan">
+<h3>Tahap 10 – Prediksi Masa Depan<a class="headerlink" href="#tahap-10-prediksi-masa-depan" title="Link to this heading">#</a></h3>
+<p>Model memprediksi 10 hari ke depan:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">predictions</span> <span class="o">=</span> <span class="n">forecaster</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span>
+    <span class="n">steps</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="n">exog</span><span class="o">=</span><span class="n">data_test</span><span class="p">[</span><span class="s1">&#39;Temperature&#39;</span><span class="p">]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Contoh hasil:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Tanggal</p></th>
+<th class="head"><p>Prediksi Demand</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>2014-12-22</p></td>
+<td><p>241514</p></td>
+</tr>
+<tr class="row-odd"><td><p>2014-12-23</p></td>
+<td><p>226165</p></td>
+</tr>
+<tr class="row-even"><td><p>2014-12-24</p></td>
+<td><p>220506</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="kesimpulan">
+<h2>Kesimpulan<a class="headerlink" href="#kesimpulan" title="Link to this heading">#</a></h2>
+<p>Kasus pada notebook ini adalah peramalan kebutuhan listrik harian (electricity demand forecasting) menggunakan algoritma LightGBM dan framework Skforecast. Input model berupa 7 lag demand sebelumnya dan temperatur, sedangkan outputnya adalah demand listrik hari berikutnya. Setelah model dilatih, dilakukan analisis interpretabilitas menggunakan Feature Importance dan SHAP untuk mengetahui faktor-faktor yang paling mempengaruhi hasil prediksi. Dari hasil analisis, Temperature dan Demand beberapa hari sebelumnya (lag) merupakan variabel yang paling berpengaruh terhadap prediksi kebutuhan listrik.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Peramalan%20kadar%20%20NO2%20di%20daerah%20Sumenep%20Madura.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Prediksi Kadar <span class="math notranslate nohighlight">\(NO_2\)</span> di daerah Sumenep Madura</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisa-prediksi-tentang-apa">1. Analisa prediksi tentang apa?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bagaimana-bentuk-data-trainingnya">2. Bagaimana bentuk data trainingnya?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#input-x">Input (X)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#output-y">Output (y)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#apa-itu-lag">3. Apa itu Lag?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jelaskan-proses-analisis-yang-dilakukan">4. Jelaskan proses analisis yang dilakukan</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tahap-1-mengambil-dataset">Tahap 1 – Mengambil Dataset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tahap-2-resampling-data">Tahap 2 – Resampling Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tahap-3-split-data">Tahap 3 – Split Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tahap-4-membuat-model-forecasting">Tahap 4 – Membuat Model Forecasting</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tahap-5-training-model">Tahap 5 – Training Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tahap-6-feature-importance">Tahap 6 – Feature Importance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tahap-7-shap-analysis">Tahap 7 – SHAP Analysis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tahap-8-shap-summary-plot">Tahap 8 – SHAP Summary Plot</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tahap-9-shap-force-plot">Tahap 9 – SHAP Force Plot</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tahap-10-prediksi-masa-depan">Tahap 10 – Prediksi Masa Depan</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">Kesimpulan</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By ShofiatulMahmudah (24041100023)
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
